@@ -1,0 +1,67 @@
+.anton-regular {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal
+  }
+
+.header {
+    width: 100%;
+    position: relative;
+}
+
+.header-container {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12vh;
+    gap: 35vh;
+    position: relative;
+    z-index: 1;
+    background-color:rgb(22, 9, 67)
+}
+
+.header-container h1 {
+    font-style: italic;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: white;
+    transition: all 0.3s ease;
+    background-color: rgb(58, 66, 109); 
+    border-radius: 10000px;
+    padding: 2vh;
+}
+
+.nav-links a:hover {
+    transform: scale(1.1);
+    color: rgb(152, 156, 173);
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.socials img {
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.socials img:hover {
+    transform: translateX(5px) scale(1.1);
+    filter: brightness(1.2);
+}
+
