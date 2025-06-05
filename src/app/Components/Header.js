@@ -19,12 +19,12 @@ export default function Header() {
     return (
         <header>
             <div className="header-container">
-                <h1 className={anton.className}>AB</h1>
+                <h1 className={anton.className}><a href="#home">AB</a></h1>
                 <div className={`${monsterrat.className} nav-links`}>
                     <a href="#about">About</a>
+                    <a href="#tools">Tools</a>
                     <a href="#experience">Experience</a>
                     <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
                 </div>
                 <div className="socials">
                     <a href="https://www.linkedin.com/in/aneesh-bargaje-a345b7269/" target="_blank" rel="noopener noreferrer">

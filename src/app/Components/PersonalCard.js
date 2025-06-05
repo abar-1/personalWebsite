@@ -6,12 +6,12 @@ export default function PersonalCard() {
     const name = "ANEESH";
 
     return (
-        <div className="container">
+        <div className="container" id="home">
             <div className="pfp">
                 <img src="https://media.licdn.com/dms/image/v2/D5603AQGMO-97LyMqCw/profile-displayphoto-shrink_400_400/B56ZbuUBUaHUAg-/0/1747754948812?e=1754524800&v=beta&t=7pfDPvrMjidyrBCUzDN_SASE6Yn-3VGGjphtR8qEUOI" alt="profile pic"></img>
             </div>
             <div>
-                <div >
+                <div>
                     <h1>
                         <span className="bold"> Hi</span>, I'm&nbsp;
                         <span className="word">
@@ -21,8 +21,24 @@ export default function PersonalCard() {
                         </span>
                     </h1>
                 </div>
-                <p>Incoming freshman @ purdue, ds + cs 💻</p>
-                <p>Chicago, IL 📍</p>
+                <p>ds + cs @ purdue 💻</p>
+                <p>software development intern @ KLoBot, research intern @ iit</p>
+                <p> interested in cyber and ml </p>
+                <p>chicago 📍</p>
+                <div className="socials">
+                    <a href="https://www.linkedin.com/in/aneesh-bargaje-a345b7269/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/?size=100&id=13930&format=png&color=000000" alt="linkedin" />
+                    </a>
+                    ·
+                    <a href="https://github.com/abar-1" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=FFFFFF" alt="github" />
+                    </a>
+                    ·
+                    <a href="https://www.instagram.com/b._aneesh/?next=%2F" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/?size=100&id=32323&format=png&color=000000" alt="instagram" />
+                    </a>
+                    · <a href="mailto:abargaje@purdue.edu">abargaje [at] purdue [dot] edu</a>
+                </div>
 
                 <button href="#contact"> Message</button>
             </div>

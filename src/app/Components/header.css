@@ -26,6 +26,17 @@
     color: white;
 }
 
+.header-container h1 a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.header-container h1 a:hover {
+    color: rgb(152, 156, 173);
+    transform: scale(1.1);
+}
+
 .nav-links {
     display: flex;
     flex-direction: row;
