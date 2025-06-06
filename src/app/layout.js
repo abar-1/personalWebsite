@@ -37,9 +37,8 @@ export default function RootLayout({ children }) {
         </div>
         
         <Experience />
-        <BottomNav />
         <Projects />
-        
+        <BottomNav />        
       </body>
     </html>
   );

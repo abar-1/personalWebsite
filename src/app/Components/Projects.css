@@ -1,8 +1,11 @@
+#projects {
+    background-color: rgb(19, 1, 45);
+    color: white;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 .header {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 2.5rem;
     font-weight: bold;
-    text-align: center;
-    color: white;
-    padding-bottom: 50vh;
 }

@@ -9,13 +9,34 @@
   
   .bottom-nav {
     display: flex;
-    background: white;
+    background: rgb(160, 124, 175);
     padding: 12px 20px;
     border-radius: 30px;
-    border: 2px solid rgb(33, 30, 30);
+    border: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     gap: 2rem;
   }
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 0 20px rgba(128, 0, 255, 0.3),
+        0 0 40px rgba(128, 0, 255, 0.2),
+        0 0 60px rgba(128, 0, 255, 0.15);
+    }
+    50% {
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 0 30px rgba(128, 0, 255, 0.4),
+        0 0 50px rgba(128, 0, 255, 0.3),
+        0 0 70px rgba(128, 0, 255, 0.25);
+    }
+  }
+  
+  .bottom-nav:hover {
+    animation: pulse-glow 1.6s ease-in-out infinite;
+  }
+  
   
   .nav-button-wrapper {
     display: flex;
