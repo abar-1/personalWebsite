@@ -10,10 +10,17 @@ import expIcon from "../assets/exp.png";
 const navItems = [
     { name: "Home", icon: homeIcon},
     { name: "Techstack", icon: toolIcon},
-    { name: "Projects", icon: projectIcon},
-    { name: "Experience", icon: expIcon}
+    { name: "Experience", icon: expIcon},
+    { name: "Projects", icon: projectIcon}
 
 ];
+
+const links = [
+    "#home",
+    "#tools",
+    "#experience",
+    "#projects"
+]
 
 export default function BottomNav() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -35,7 +42,7 @@ export default function BottomNav() {
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            <Image src={item.icon} alt={item.name} className="nav-icon" />
+            <a href={links[index]}><Image src={item.icon} alt={item.name} className="nav-icon" /></a>
             <span className="nav-label">{item.name}</span>
           </div>
         ))}

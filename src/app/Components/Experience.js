@@ -31,6 +31,15 @@ const Experience = () => {
         "Assisted in planning schedule for school year and summer camps.",
       ],
     },
+    {
+      company: "Illinois State Treasurer's Office",
+      title: "Cybersecurity Intern",
+      date: "September 2023 - April 2024",
+      bulletPoints: [
+        "Organized monthly vulnerability scans with the Cybersecurity and Infrastructure Security Agency (CISA), exposing 4 vulnerabilities in various domains.",
+        "Researched machine learning applications to fraud detection for abandoned property claims."
+      ]
+    }
   ];
 
   return (

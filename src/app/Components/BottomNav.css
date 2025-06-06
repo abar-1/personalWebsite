@@ -5,7 +5,6 @@
     transform: translateX(-50%);
     z-index: 1000;
     
-
   }
   
   .bottom-nav {
@@ -15,7 +14,7 @@
     border-radius: 30px;
     border: 2px solid rgb(33, 30, 30);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    gap: 24px;
+    gap: 2rem;
   }
   
   .nav-button-wrapper {
@@ -31,11 +30,12 @@
     width: 28px;
     height: 28px;
     transition: transform 0.25s ease;
+    
   }
   
   .nav-label {
     position: absolute;
-    bottom: -24px;
+    bottom: 3rem;
     background: rgba(0, 0, 0, 0.8);
     color: white;
     font-size: 12px;
