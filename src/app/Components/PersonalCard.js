@@ -6,7 +6,7 @@ export default function PersonalCard() {
     const name = "ANEESH";
 
     return (
-        <div className="container" id="home">
+        <div className="container" id="about">
             <div className="pfp">
                 <img src="https://media.licdn.com/dms/image/v2/D5603AQGMO-97LyMqCw/profile-displayphoto-shrink_400_400/B56ZbuUBUaHUAg-/0/1747754948812?e=1754524800&v=beta&t=7pfDPvrMjidyrBCUzDN_SASE6Yn-3VGGjphtR8qEUOI" alt="profile pic"></img>
             </div>

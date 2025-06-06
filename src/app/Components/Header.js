@@ -19,7 +19,7 @@ export default function Header() {
     return (
         <header>
             <div className="header-container">
-                <h1 className={anton.className}><a href="#home">AB</a></h1>
+                <h1 className={anton.className}>AB</h1>
                 <div className={`${monsterrat.className} nav-links`}>
                     <a href="#about">About</a>
                     <a href="#tools">Tools</a>

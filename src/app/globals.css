@@ -14,6 +14,8 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -42,9 +44,18 @@ a {
   }
 }
 
-.personalCard {
+.landing {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 2rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px; /* reduced padding */
+  gap: 0px;          /* closer vertical spacing between components */
+  
 }
+
+/* Optional: constrain child width */
+.landing > * {
+  width: 100%;
+  max-width: 700px;
+}
+

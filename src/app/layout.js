@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "./Components/Header";
 import PersonalCard from "./Components/PersonalCard";
 import Tools from "./Components/Tools";
+import Experience from "./Components/Experience";
+import BottomNav from "./Components/BottomNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,16 +22,22 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+
   return (
     <html lang="en">
+      <head>
+        <title>Aneesh's Portfolio</title>
+      </head>
       <body>
-        <div>
-        <Header />
-        </div>
-        <div className="personalCard">
+       
+        <div className="landing">
         <PersonalCard />
-        </div>
         <Tools />
+        </div>
+        
+        <Experience />
+        <BottomNav />
         
       </body>
     </html>

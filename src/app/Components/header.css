@@ -10,15 +10,16 @@
 }
 
 .header-container {
-    padding: 1rem;
+    padding: 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 12vh;
     gap: 35vh;
-    position: relative;
+    position: fixed;
+    width: 100vw;
     z-index: 1;
-    background-color:rgb(22, 9, 67)
+    background-color:rgb(22, 9, 67);
 }
 
 .header-container h1 {

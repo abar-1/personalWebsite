@@ -1,0 +1,74 @@
+.heading {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2.5rem;
+}
+
+p,h3,ul {
+    color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+.experience-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: rgb(19, 1, 45);
+    min-height: 100vh;
+  }
+  
+  .experience-card {
+    width: 100%;
+    max-width: 800px;
+    background-color: #38124e;
+    border: 1px solid #eb82fb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: 0.4s ease-in-out
+  }
+  .experience-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  
+  .experience-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .experience-company {
+    font-size: 1rem;
+    color: #d0cccc;
+    margin: 4px 0 0;
+  }
+  
+  .experience-date {
+    font-size: 0.9rem;
+    color: #f7f6f6;
+    white-space: nowrap;
+  }
+  
+  .experience-bullets {
+    list-style: disc inside;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .experience-bullets li {
+    margin-bottom: 6px;
+    color: #e1dbdb;
+  }
+
+  
