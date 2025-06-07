@@ -9,12 +9,13 @@
   
   .bottom-nav {
     display: flex;
-    background: rgb(160, 124, 175);
-    padding: 12px 20px;
-    border-radius: 30px;
-    border: none;
+    background: rgb(45, 1, 72);
+    padding: 8px 20px;
+    border-radius: 20px;
+    border:2px solid rgb(17, 2, 47);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    gap: 2rem;
+    gap: 1rem;
+
   }
   @keyframes pulse-glow {
     0%, 100% {
@@ -48,9 +49,12 @@
   }
   
   .nav-icon {
-    width: 28px;
-    height: 28px;
+    width: 35px;
+    height: 35px;
     transition: transform 0.25s ease;
+    background-color:rgb(131, 98, 164);
+    padding:5px;
+    border-radius:10px;
     
   }
   

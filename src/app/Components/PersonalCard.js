@@ -21,10 +21,10 @@ export default function PersonalCard() {
                         </span>
                     </h1>
                 </div>
-                <p>ds + cs @ purdue 💻</p>
+                <p>ds + cs @ purdue 📚</p>
                 <p> afrotc cadet, aspiring space force officer 🎖️ </p>
-                <p>software development intern @ KLoBot, research intern @ iit</p>
-                <p> interested in cyber and ml </p>
+                <p>software development intern @ KLoBot, research intern @ iit 🏢</p>
+                <p> interested in cyber and ml 💻</p>
                 <p>chicago 📍</p>
                 <div className="socials">
                     <a href="https://www.linkedin.com/in/aneesh-bargaje-a345b7269/" target="_blank" rel="noopener noreferrer">
@@ -41,7 +41,7 @@ export default function PersonalCard() {
                     · <a href="mailto:abargaje@purdue.edu">abargaje [at] purdue [dot] edu</a>
                 </div>
 
-                <button href="#contact"> Message</button>
+                
             </div>
         </div>
     );
