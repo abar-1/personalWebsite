@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>Aneesh's Portfolio</title>
+        <title>Aneesh&apos;s Portfolio</title>
       </head>
       <body>
        
