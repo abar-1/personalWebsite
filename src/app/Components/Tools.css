@@ -3,7 +3,7 @@
     margin: 0vh auto;
     padding: 2rem 1rem;
     text-align: center;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
   }
   
@@ -73,7 +73,6 @@
   }
   
   .slide-label {
-    margin-top: rem;
     width: 100%;
     font-size: 0.9rem;
     color: white;
