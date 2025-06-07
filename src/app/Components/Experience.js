@@ -7,9 +7,7 @@ const Experience = () => {
       company: "KLoBot",
       title: "Incoming Software Development Intern",
       date: "Summer 2025",
-      bulletPoints: [
-        ,
-      ],
+      bulletPoints: [],
     },
     {
       company: "Illinois Institute of Technology",
@@ -37,7 +35,7 @@ const Experience = () => {
       date: "September 2023 - April 2024",
       bulletPoints: [
         "Organized monthly vulnerability scans in partnership with the Cybersecurity and Infrastructure Security Agency (CISA), identifying and documenting 4 vulnerabilities in various public-facing domains.",
-        "Investigated applications of machine learning for detecting fraudulent claims in Illinois' Unclaimed Property program, laying groundwork for potential automation and anomaly detection models."
+        "Investigated applications of machine learning for detecting fraudulent claims in Illinois’ Unclaimed Property program, laying groundwork for potential automation and anomaly detection models."
       ]
     }
   ];
