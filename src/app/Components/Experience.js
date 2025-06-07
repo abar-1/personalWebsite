@@ -16,7 +16,7 @@ const Experience = () => {
       bulletPoints: [
         "Led the digitalization of 16 Quadrature Amplitude Modulation (QAM) modulation and demodulation with Python that might replace QAM hardware in devices.",
         "Built a decision tree and random forest model capable of decoding 16 QAM signals with Gaussian and impulse noise with a 91.4% accuracy.",
-        "Presenting at IIT’s Real-Time Communications Conference in October 2025.",
+        "Presenting at IITs Real-Time Communications Conference in October 2025.",
       ],
     },
     {
@@ -35,7 +35,7 @@ const Experience = () => {
       date: "September 2023 - April 2024",
       bulletPoints: [
         "Organized monthly vulnerability scans in partnership with the Cybersecurity and Infrastructure Security Agency (CISA), identifying and documenting 4 vulnerabilities in various public-facing domains.",
-        "Investigated applications of machine learning for detecting fraudulent claims in Illinois’ Unclaimed Property program, laying groundwork for potential automation and anomaly detection models."
+        "Investigated applications of machine learning for detecting fraudulent claims in Illinois Unclaimed Property program, laying groundwork for potential automation and anomaly detection models."
       ]
     }
   ];
