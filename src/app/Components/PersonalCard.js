@@ -13,7 +13,7 @@ export default function PersonalCard() {
             <div>
                 <div>
                     <h1>
-                        <span className="bold"> Hi</span>, I&apos;m&nbsp;
+                        <span className="bold"> Hi</span>, Im&nbsp;
                         <span className="word">
                             {name.split("").map((letter, index) => (
                                 <span key={index} className="char">{letter}</span>
