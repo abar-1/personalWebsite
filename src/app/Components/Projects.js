@@ -58,7 +58,7 @@ export default function Projects() {
                         <div className="project-description">
                             <ul >
                             {proj.description.map((bullet, idx) => (
-                                <li id={idx}>{bullet}</li>                           
+                                <li key={idx}>{bullet}</li>                           
 
                             ))}
                             </ul>
