@@ -1,5 +1,4 @@
 #projects {
-    background-color: rgb(19, 1, 45);
     color: white;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -8,5 +7,94 @@
 .header {
     font-size: 2.5rem;
     font-weight: bold;
-    padding-bottom: 10rem;
+    
 }
+
+.title {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Global section container */
+.projects-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: center;
+    padding-bottom: 10rem;
+    align-items: stretch;
+    justify-content: center;
+  }
+  
+  /* Individual project card */
+  .project-card {
+    background-color: #2a2a40; /* slightly lighter dark purple */
+    color: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Hover glow effect */
+  .project-card:hover {
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+    transform: translateY(-5px);
+  }
+  
+  /* Project image */
+  .project-image img {
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    pointer-events: none; /* optional: ensures image itself doesn't respond to hover */
+    transition: none !important;
+  }
+  
+  /* Description */
+  .project-description {
+    list-style: disc inside;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Tech stack and link container */
+  .project-toolsandlink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+  
+  /* Tech logos and GitHub logo */
+  .project-toolsandlink img {
+    height: 30px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+  
+  /* Hover effect on logos */
+  .project-toolsandlink img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.3);
+    cursor: pointer;
+  }
+  
+  /* Optional: style the section title */
+  .header#projects {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+    color: #e0e0ff;
+  }
+  
