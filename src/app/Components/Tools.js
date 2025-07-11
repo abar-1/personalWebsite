@@ -17,6 +17,7 @@ import cLogo from "../assets/c++.png";
 import pythonLogo from "../assets/python.png";
 import flaskLogo from "../assets/flask.png";
 import pandasLogo from "../assets/pandas.png";
+import firebaseLogo from '../assets/firebase.png';
 import sqlLogo from "../assets/postgresql.png";
 import bashLogo from "../assets/bash.png";
 import tfLogo from "../assets/tensorflow.png";
@@ -30,6 +31,7 @@ const tools = [
   { name: "C++", logo: cLogo },
   { name: "CSS", logo: cssLogo },
   { name: "Bash", logo: bashLogo },
+  { name: "Firebase", logo: firebaseLogo},
   { name: "TensorFlow", logo: tfLogo},
   { name: "Tailwind CSS", logo: tailwindCSSLogo},
   { name: "JavaScript", logo: jsLogo },
