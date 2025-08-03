@@ -1,0 +1,237 @@
+#projects {
+    color: white;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    
+}
+
+.title {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Global section container */
+.projects-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2rem;
+    align-items: center;
+    padding-bottom: 10rem;
+    align-items: stretch;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+  }
+  
+  /* Individual project card */
+  .project-card {
+    background-color: #2a2a40; /* slightly lighter dark purple */
+    color: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    margin: 2rem auto;
+  }
+  
+  /* Hover glow effect */
+  .project-card:hover {
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+    transform: translateY(-5px);
+  }
+  
+  /* Project image */
+  .project-image {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper, .swiper-slide {
+    width: 500px;
+    height: 300px;
+    max-width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: transparent; /* No background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide {
+    position: relative; /* Required for Next.js Image */
+  }
+
+  .swiper .swiper-slide img {
+    /* Remove hover effect if any */
+    transition: none !important;
+}
+
+  .project-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+
+  }
+  
+  /* Description */
+  .project-description {
+    list-style: disc inside;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Tech stack and link container */
+  .project-toolsandlink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+  
+  /* Tech logos and GitHub logo */
+  .project-toolsandlink img {
+    height: 30px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+  
+  /* Hover effect on logos */
+  .project-toolsandlink img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.3);
+    cursor: pointer;
+  }
+  
+  /* Optional: style the section title */
+  .header#projects {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+    color: #e0e0ff;
+  }
+
+/* Prevent scaling on hover for Swiper images */
+.project-image .swiper-slide img:hover {
+  transform: none !important;
+}
+
+/* Fullscreen button */
+.swiper-container {
+    position: relative;
+}
+
+.fullscreen-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.fullscreen-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* Fullscreen modal */
+.fullscreen-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.fullscreen-content {
+    user-select: none;
+    width: 90vw;
+    height: 90vh;
+    max-width: 1200px;
+    max-height: 800px;
+    position: relative;
+}
+
+.fullscreen-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.fullscreen-swiper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Add this to your existing CSS - more targeted approach */
+.fullscreen-swiper .swiper-slide img {
+    transform: none !important;
+    transition: none !important;
+}
+
+.fullscreen-swiper .swiper-slide img:hover {
+    transform: none !important;
+    transition: none !important;
+}
+  

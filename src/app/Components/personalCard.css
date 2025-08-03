@@ -1,0 +1,153 @@
+.container {
+  margin: 2vh auto;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 1200px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: white;
+  padding: 2rem;
+  background: rgb(22, 20, 20);
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  padding: 5px;
+  margin-left: 1rem;
+}
+
+button {
+  background-color: rgb(81, 15, 81);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 1rem;
+  width: 8rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+button:hover {
+  background:rgb(64, 9, 64);
+  cursor: pointer;
+}
+
+.pfp img {
+  width: 200px;
+  height: auto;
+  border: black;
+  border-radius: 100%;
+  transition: 0.5s ease-in-out;
+}
+
+.socials {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.socials img {
+  width: 30px;
+  height: 30px;
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+}
+
+img:hover {
+  transform: scale(0.9);
+}
+
+.bold {
+  font-weight: 10000;
+  margin-left: 1rem;
+}
+
+.word {
+  display: inline-flex;
+  cursor: pointer;
+  color: blueviolet;
+}
+
+.word:hover .char:nth-child(1) {
+  transform: translateY(10px) rotate(-20deg);
+}
+
+.word:hover .char:nth-child(2) {
+  transform: translateY(-40px) rotate(5deg);
+}
+
+.word:hover .char:nth-child(3) {
+  transform: translateY(15px) rotate(12deg);
+}
+
+.word:hover .char:nth-child(4) {
+  transform: translateY(-25px) rotate(5deg);
+}
+
+.word:hover .char:nth-child(5) {
+  transform: translateY(-40px) rotate(-10deg);
+}
+
+.word:hover .char:nth-child(6) {
+  transform: translateY(-15px) rotate(8deg);
+}
+
+.char {
+  transition: 0.4s ease-in-out;
+  position: relative;
+  font-weight: bold;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .pfp img {
+    width: 150px;
+  }
+
+  .socials {
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  button {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .pfp img {
+    width: 120px;
+  }
+
+  .socials {
+    gap: 0.3rem;
+  }
+
+  .socials img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+

@@ -1,0 +1,76 @@
+/* [project]/src/app/Components/Experience.css [app-client] (css) */
+.heading {
+  color: #fff;
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+p, h3, ul {
+  color: #fff;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+}
+
+.experience-section {
+  background-color: #13012d;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+}
+
+.experience-card {
+  background-color: #38124e;
+  border: 1px solid #eb82fb;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 24px;
+  padding: 20px;
+  transition: all .4s ease-in-out;
+  box-shadow: 0 2px 8px #0000000f;
+}
+
+.experience-card:hover {
+  transform: scale(1.05);
+}
+
+.experience-header {
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.experience-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.experience-company {
+  color: #d0cccc;
+  margin: 4px 0 0;
+  font-size: 1rem;
+}
+
+.experience-date {
+  color: #f7f6f6;
+  white-space: nowrap;
+  font-size: .9rem;
+}
+
+.experience-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: inside;
+}
+
+.experience-bullets li {
+  color: #e1dbdb;
+  margin-bottom: 6px;
+}
+
+/*# sourceMappingURL=src_app_Components_Experience_css_f9ee138c._.single.css.map*/

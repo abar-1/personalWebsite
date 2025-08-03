@@ -1,0 +1,144 @@
+/* [project]/src/app/Components/Tools.css [app-client] (css) */
+.tools-container {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+}
+
+.tools-title {
+  color: #fff;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.carousel-wrapper {
+  background: #0000001a;
+  border-radius: 10px;
+  padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-wrapper:hover .slide-track {
+  animation-play-state: paused;
+}
+
+.slide-track {
+  width: 7500px;
+  animation: 30s linear infinite scroll;
+  display: flex;
+}
+
+.slide {
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 128px;
+  margin: 0 .5rem;
+  transition: transform .3s;
+  display: flex;
+}
+
+.slide:hover {
+  transform: translateY(-5px);
+}
+
+.slide-inner {
+  background: #d9d3d31a;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 128px;
+  height: 128px;
+  padding: 1rem;
+  transition: background .3s;
+  display: flex;
+}
+
+.slide-inner:hover {
+  background: #f5f3f333;
+}
+
+.slide-logo {
+  object-fit: contain;
+  transition: transform .3s;
+}
+
+.slide:hover .slide-logo {
+  transform: scale(1.1);
+}
+
+.slide-label {
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  font-size: .9rem;
+}
+
+.gradient-left, .gradient-right {
+  z-index: 10;
+  width: 96px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.gradient-left {
+  background: linear-gradient(to right, #13012d, #0000);
+  left: 0;
+}
+
+.gradient-right {
+  background: linear-gradient(to left, #13012d, #0000);
+  right: 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (width <= 768px) {
+  .tools-title {
+    font-size: 2.5rem;
+  }
+
+  .slide {
+    width: 100px;
+  }
+
+  .slide-inner {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media screen and (width <= 480px) {
+  .tools-title {
+    font-size: 2rem;
+  }
+
+  .slide {
+    width: 80px;
+  }
+
+  .slide-inner {
+    width: 80px;
+    height: 80px;
+  }
+
+  .slide-label {
+    font-size: .8rem;
+  }
+}
+
+/*# sourceMappingURL=src_app_Components_Tools_css_f9ee138c._.single.css.map*/

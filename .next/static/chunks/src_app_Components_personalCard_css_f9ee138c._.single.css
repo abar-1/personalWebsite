@@ -1,0 +1,153 @@
+/* [project]/src/app/Components/personalCard.css [app-client] (css) */
+.container {
+  color: #fff;
+  background: #161414;
+  border-radius: 10px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 90%;
+  max-width: 1200px;
+  margin: 2vh auto;
+  padding: 2rem;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  display: flex;
+}
+
+p {
+  margin-left: 1rem;
+  padding: 5px;
+}
+
+button {
+  color: #fff;
+  background-color: #510f51;
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 8rem;
+  margin: 1rem;
+  padding: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #400940;
+}
+
+.pfp img {
+  border: #000;
+  border-radius: 100%;
+  width: 200px;
+  height: auto;
+  transition: all .5s ease-in-out;
+}
+
+.socials {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  margin-left: 1rem;
+  display: flex;
+}
+
+.socials img {
+  width: 30px;
+  height: 30px;
+}
+
+.socials a {
+  align-items: center;
+  display: flex;
+}
+
+img:hover {
+  transform: scale(.9);
+}
+
+.bold {
+  margin-left: 1rem;
+  font-weight: 10000;
+}
+
+.word {
+  cursor: pointer;
+  color: #8a2be2;
+  display: inline-flex;
+}
+
+.word:hover .char:first-child {
+  transform: translateY(10px)rotate(-20deg);
+}
+
+.word:hover .char:nth-child(2) {
+  transform: translateY(-40px)rotate(5deg);
+}
+
+.word:hover .char:nth-child(3) {
+  transform: translateY(15px)rotate(12deg);
+}
+
+.word:hover .char:nth-child(4) {
+  transform: translateY(-25px)rotate(5deg);
+}
+
+.word:hover .char:nth-child(5) {
+  transform: translateY(-40px)rotate(-10deg);
+}
+
+.word:hover .char:nth-child(6) {
+  transform: translateY(-15px)rotate(8deg);
+}
+
+.char {
+  font-weight: bold;
+  transition: all .4s ease-in-out;
+  position: relative;
+}
+
+@media screen and (width <= 768px) {
+  .container {
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .pfp img {
+    width: 150px;
+  }
+
+  .socials {
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  button {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media screen and (width <= 480px) {
+  .container {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .pfp img {
+    width: 120px;
+  }
+
+  .socials {
+    gap: .3rem;
+  }
+
+  .socials img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/*# sourceMappingURL=src_app_Components_personalCard_css_f9ee138c._.single.css.map*/

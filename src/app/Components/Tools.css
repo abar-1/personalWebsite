@@ -1,0 +1,144 @@
+.tools-container {
+    max-width: 1200px;
+    margin: 0vh auto;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+  }
+  
+  .tools-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: white;
+    
+  }
+  
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 0;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  .carousel-wrapper:hover .slide-track {
+    animation-play-state: paused;
+  }
+  
+  .slide-track {
+    display: flex;
+    width: calc(250px * 30); /* Adjust based on slide size */
+    animation: scroll 30s linear infinite;
+  }
+  
+  .slide {
+    width: 128px;
+    margin: 0 0.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slide:hover {
+    transform: translateY(-5px);
+  }
+  
+  .slide-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 128px;
+    width: 128px;
+    padding: 1rem;
+    background: rgba(217, 211, 211, 0.1);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  .slide-inner:hover {
+    background: rgba(245, 243, 243, 0.2);
+  }
+  
+  .slide-logo {
+    transition: transform 0.3s ease;
+    object-fit: contain;
+  }
+  
+  .slide:hover .slide-logo {
+    transform: scale(1.1);
+  }
+  
+  .slide-label {
+    width: 100%;
+    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+  }
+  
+  .gradient-left,
+  .gradient-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 96px;
+    z-index: 10;
+  }
+  
+  .gradient-left {
+    left: 0;
+    background: linear-gradient(to right, rgb(19, 1, 45), transparent);
+  }
+  
+  .gradient-right {
+    right: 0;
+    background: linear-gradient(to left, rgb(19, 1, 45), transparent);
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* Media Queries */
+  @media screen and (max-width: 768px) {
+    .tools-title {
+      font-size: 2.5rem;
+    }
+  
+    .slide {
+      width: 100px;
+    }
+  
+    .slide-inner {
+      height: 100px;
+      width: 100px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .tools-title {
+      font-size: 2rem;
+    }
+  
+    .slide {
+      width: 80px;
+    }
+  
+    .slide-inner {
+      height: 80px;
+      width: 80px;
+    }
+  
+    .slide-label {
+      font-size: 0.8rem;
+    }
+  }
+  

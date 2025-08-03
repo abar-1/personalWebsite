@@ -1,0 +1,214 @@
+/* [project]/src/app/Components/Projects.css [app-client] (css) */
+#projects {
+  color: #fff;
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+}
+
+.header {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.title {
+  padding: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  font-weight: bold;
+}
+
+.projects-section {
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+  width: 80%;
+  margin: auto;
+  padding: 2rem 2rem 10rem;
+  display: flex;
+}
+
+.project-card {
+  color: #fff;
+  background-color: #2a2a40;
+  border-radius: 1rem;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  transition: box-shadow .3s, transform .3s;
+  display: flex;
+  box-shadow: 0 0 10px #8a2be233;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #8a2be299;
+}
+
+.project-image {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+}
+
+.swiper, .swiper-slide {
+  background: none;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  max-width: 100%;
+  height: 300px;
+  display: flex;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  position: relative;
+}
+
+.swiper .swiper-slide img {
+  transition: none !important;
+}
+
+.project-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
+}
+
+.project-description {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  list-style: inside;
+}
+
+.project-toolsandlink {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .25rem;
+  display: flex;
+}
+
+.project-toolsandlink img {
+  height: 30px;
+  transition: transform .2s, filter .2s;
+}
+
+.project-toolsandlink img:hover {
+  filter: brightness(1.3);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.header#projects {
+  text-align: center;
+  color: #e0e0ff;
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.project-image .swiper-slide img:hover {
+  transform: none !important;
+}
+
+.swiper-container {
+  position: relative;
+}
+
+.fullscreen-btn {
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  background: #000000b3;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  transition: background-color .3s;
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.fullscreen-btn:hover {
+  background: #000000e6;
+}
+
+.fullscreen-modal {
+  z-index: 1000;
+  cursor: pointer;
+  background: #000000f2;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.fullscreen-content {
+  user-select: none;
+  width: 90vw;
+  max-width: 1200px;
+  height: 90vh;
+  max-height: 800px;
+  position: relative;
+}
+
+.fullscreen-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.fullscreen-swiper .swiper-slide {
+  background: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.close-btn {
+  color: #fff;
+  cursor: pointer;
+  z-index: 1001;
+  background: #000000b3;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  transition: background-color .3s;
+  display: flex;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.close-btn:hover {
+  background: #000000e6;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.fullscreen-swiper .swiper-slide img, .fullscreen-swiper .swiper-slide img:hover {
+  transition: none !important;
+  transform: none !important;
+}
+
+/*# sourceMappingURL=src_app_Components_Projects_css_f9ee138c._.single.css.map*/
