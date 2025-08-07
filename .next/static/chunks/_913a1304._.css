@@ -98,10 +98,11 @@ button:hover {
 }
 
 .pfp img {
-  border: #000;
-  border-radius: 100%;
+  object-fit: cover;
+  border: 2px solid #000;
+  border-radius: 50%;
   width: 200px;
-  height: auto;
+  height: 200px;
   transition: all .5s ease-in-out;
 }
 

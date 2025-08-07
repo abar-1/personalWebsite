@@ -37,11 +37,13 @@ button:hover {
 
 .pfp img {
   width: 200px;
-  height: auto;
-  border: black;
-  border-radius: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid black;
   transition: 0.5s ease-in-out;
 }
+
 
 .socials {
   margin-left: 1rem;

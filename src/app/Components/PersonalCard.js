@@ -1,19 +1,32 @@
 "use client";
 import React from 'react';
+import Image from 'next/image';
 import './personalCard.css';
+
+import profile from '../assets/IMG_3352.png';
 
 export default function PersonalCard() {
     const name = "ANEESH";
 
+    console.log('PROFILE:', profile);
+
     return (
         <div className="container" id="home">
             <div className="pfp">
-                <img src="https://media.licdn.com/dms/image/v2/D5603AQGMO-97LyMqCw/profile-displayphoto-shrink_400_400/B56ZbuUBUaHUAg-/0/1747754948812?e=1754524800&v=beta&t=7pfDPvrMjidyrBCUzDN_SASE6Yn-3VGGjphtR8qEUOI" alt="profile pic"></img>
+                <Image
+                    src={profile}
+                    alt="profile pic"
+                    className="your-classname"
+                    width={300}
+                    height={400}
+                    priority // (optional: load early)
+                />
+
             </div>
             <div>
                 <div>
                     <h1>
-                        <span className="bold"> Hi</span>, Im&nbsp;
+                        <span className="bold"> Hi</span>, I&apos;m&nbsp;
                         <span className="word">
                             {name.split("").map((letter, index) => (
                                 <span key={index} className="char">{letter}</span>
