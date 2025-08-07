@@ -81,7 +81,7 @@ function PersonalCard() {
                                     children: " Hi"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/Components/PersonalCard.js",
-                                    lineNumber: 29,
+                                    lineNumber: 28,
                                     columnNumber: 25
                                 }, this),
                                 ", I'm ",
@@ -92,58 +92,58 @@ function PersonalCard() {
                                             children: letter
                                         }, index, false, {
                                             fileName: "[project]/src/app/Components/PersonalCard.js",
-                                            lineNumber: 32,
+                                            lineNumber: 31,
                                             columnNumber: 33
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/Components/PersonalCard.js",
-                                    lineNumber: 30,
+                                    lineNumber: 29,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/Components/PersonalCard.js",
-                            lineNumber: 28,
+                            lineNumber: 27,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/Components/PersonalCard.js",
-                        lineNumber: 27,
+                        lineNumber: 26,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: "ds + cs @ purdue 📚"
                     }, void 0, false, {
                         fileName: "[project]/src/app/Components/PersonalCard.js",
-                        lineNumber: 37,
+                        lineNumber: 36,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: " afrotc cadet, aspiring space force officer 🎖️ "
                     }, void 0, false, {
                         fileName: "[project]/src/app/Components/PersonalCard.js",
-                        lineNumber: 38,
+                        lineNumber: 37,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: "software development intern @ KLoBot, research intern @ iit 🏢"
                     }, void 0, false, {
                         fileName: "[project]/src/app/Components/PersonalCard.js",
-                        lineNumber: 39,
+                        lineNumber: 38,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: " interested in cyber and ml 💻"
                     }, void 0, false, {
                         fileName: "[project]/src/app/Components/PersonalCard.js",
-                        lineNumber: 40,
+                        lineNumber: 39,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: "chicago 📍"
                     }, void 0, false, {
                         fileName: "[project]/src/app/Components/PersonalCard.js",
-                        lineNumber: 41,
+                        lineNumber: 40,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -158,12 +158,12 @@ function PersonalCard() {
                                     alt: "linkedin"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/Components/PersonalCard.js",
-                                    lineNumber: 44,
+                                    lineNumber: 43,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/Components/PersonalCard.js",
-                                lineNumber: 43,
+                                lineNumber: 42,
                                 columnNumber: 21
                             }, this),
                             "·",
@@ -176,12 +176,12 @@ function PersonalCard() {
                                     alt: "github"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/Components/PersonalCard.js",
-                                    lineNumber: 48,
+                                    lineNumber: 47,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/Components/PersonalCard.js",
-                                lineNumber: 47,
+                                lineNumber: 46,
                                 columnNumber: 21
                             }, this),
                             "·",
@@ -194,12 +194,12 @@ function PersonalCard() {
                                     alt: "instagram"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/Components/PersonalCard.js",
-                                    lineNumber: 52,
+                                    lineNumber: 51,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/Components/PersonalCard.js",
-                                lineNumber: 51,
+                                lineNumber: 50,
                                 columnNumber: 21
                             }, this),
                             "· ",
@@ -208,19 +208,19 @@ function PersonalCard() {
                                 children: "abargaje [at] purdue [dot] edu"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/Components/PersonalCard.js",
-                                lineNumber: 54,
+                                lineNumber: 53,
                                 columnNumber: 23
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/Components/PersonalCard.js",
-                        lineNumber: 42,
+                        lineNumber: 41,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/Components/PersonalCard.js",
-                lineNumber: 26,
+                lineNumber: 25,
                 columnNumber: 13
             }, this)
         ]

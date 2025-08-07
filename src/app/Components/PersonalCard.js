@@ -21,7 +21,6 @@ export default function PersonalCard() {
                     height={400}
                     priority // (optional: load early)
                 />
-
             </div>
             <div>
                 <div>

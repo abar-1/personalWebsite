@@ -7,7 +7,7 @@ const Experience = () => {
       company: "KLoBot",
       title: "Software Development Intern",
       date: "Summer 2025",
-      bulletPoints: ["Working with the dev team to help migrate and update Sharepoint services for various law firms. ",
+      bulletPoints: ["Working with the dev team to help migrate and update Sharepoint services for various law firms.",
         "Completed training courses in React.js, .NET core, Python, Microsoft Azure, Generative AI, and C#. "
       ],
     },
