@@ -126,7 +126,7 @@ export default function Projects() {
                                             <Image
                                                 src={img}
                                                 alt={`Project ${idx} preview`}
-                                                width={500}
+                                                width={400}
                                                 height={300}
                                                 style={{ objectFit: 'contain', width: '100%', height: '100%' }}
                                                 priority
