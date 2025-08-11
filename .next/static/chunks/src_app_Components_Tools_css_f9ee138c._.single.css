@@ -15,7 +15,7 @@
 }
 
 .carousel-wrapper {
-  background: #0000001a;
+  background: #0e0e0e;
   border-radius: 10px;
   padding: 2rem 0;
   position: relative;
@@ -34,6 +34,7 @@
 
 .slide {
   text-align: center;
+  border-radius: 10px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -48,7 +49,7 @@
 }
 
 .slide-inner {
-  background: #d9d3d31a;
+  background: #14062acc;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
@@ -88,12 +89,12 @@
 }
 
 .gradient-left {
-  background: linear-gradient(to right, #13012d, #0000);
+  background: linear-gradient(to right, #151516, #0000);
   left: 0;
 }
 
 .gradient-right {
-  background: linear-gradient(to left, #13012d, #0000);
+  background: linear-gradient(to left, #151516, #0000);
   right: 0;
 }
 

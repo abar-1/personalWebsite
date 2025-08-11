@@ -16,14 +16,14 @@ p,h3,ul {
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
-    background-color: rgb(19, 1, 45);
+
     min-height: 100vh;
   }
   
   .experience-card {
     width: 100%;
     max-width: 800px;
-    background-color: #38124e;
+    background: rgb(20, 6, 42, 0.8);
     border: 1px solid #eb82fb;
     border-radius: 12px;
     padding: 20px;

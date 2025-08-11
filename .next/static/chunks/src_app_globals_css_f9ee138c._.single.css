@@ -21,10 +21,17 @@ html, body {
 }
 
 body {
-  color: var(--foreground);
+  color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #13012d;
+  background-color: #151516;
+  background-image: linear-gradient(0deg, #ffffff0d 1px, #0000 1px), linear-gradient(90deg, #ffffff0d 1px, #0000 1px);
+  background-position: 0 0;
+  background-repeat: repeat;
+  background-size: 25px 25px;
+  background-attachment: scroll;
+  background-origin: padding-box;
+  background-clip: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
 

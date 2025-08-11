@@ -13,7 +13,6 @@ p, h3, ul {
 }
 
 .experience-section {
-  background-color: #13012d;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
@@ -22,7 +21,7 @@ p, h3, ul {
 }
 
 .experience-card {
-  background-color: #38124e;
+  background: #14062acc;
   border: 1px solid #eb82fb;
   border-radius: 12px;
   width: 100%;

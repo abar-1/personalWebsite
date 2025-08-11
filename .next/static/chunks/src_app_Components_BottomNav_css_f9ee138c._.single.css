@@ -8,23 +8,23 @@
 }
 
 .bottom-nav {
-  background: #2d0148;
+  background: #14062acc;
   border: 2px solid #11022f;
   border-radius: 20px;
   flex-direction: column;
   gap: 1rem;
   padding: 20px 8px;
   display: flex;
-  box-shadow: 0 10px 30px #0000001a;
+  box-shadow: 0 5px 20px;
 }
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 10px 30px #0000001a, 0 0 20px #8000ff4d, 0 0 40px #8000ff33, 0 0 60px #8000ff26;
+    box-shadow: 0 10px 30px #0000001a, 0 0 20px #ffffff4d, 0 0 40px #fff3, 0 0 60px #ffffff26;
   }
 
   50% {
-    box-shadow: 0 10px 30px #0000001a, 0 0 30px #8000ff66, 0 0 50px #8000ff4d, 0 0 70px #8000ff40;
+    box-shadow: 0 10px 30px #0000001a, 0 0 30px #fff6, 0 0 50px #ffffff4d, 0 0 70px #ffffff40;
   }
 }
 

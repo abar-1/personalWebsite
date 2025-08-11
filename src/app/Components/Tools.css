@@ -19,7 +19,7 @@
     position: relative;
     overflow: hidden;
     padding: 2rem 0;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgb(14, 14, 14);
     border-radius: 10px;
   }
   .carousel-wrapper:hover .slide-track {
@@ -41,6 +41,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
+    border-radius: 10px;
+
   }
   
   .slide:hover {
@@ -55,6 +58,7 @@
     width: 128px;
     padding: 1rem;
     background: rgba(217, 211, 211, 0.1);
+    background-color: rgb(20, 6, 42, 0.8);
     border-radius: 10px;
     transition: background 0.3s ease;
   }
@@ -90,12 +94,12 @@
   
   .gradient-left {
     left: 0;
-    background: linear-gradient(to right, rgb(19, 1, 45), transparent);
+    background: linear-gradient(to right, rgb(21, 21, 22), transparent);
   }
   
   .gradient-right {
     right: 0;
-    background: linear-gradient(to left, rgb(19, 1, 45), transparent);
+    background: linear-gradient(to left, rgb(21, 21, 22), transparent);
   }
   
   @keyframes scroll {
