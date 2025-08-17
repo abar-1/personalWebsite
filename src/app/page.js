@@ -4,6 +4,7 @@ import Tools from "./Components/Tools";
 import Experience from "./Components/Experience";
 import BottomNav from "./Components/BottomNav";
 import Projects from "./Components/Projects";
+import Selector from "./Components/selector";
 
 
 export default function HomePage() {
@@ -16,11 +17,13 @@ export default function HomePage() {
         <body>
          
           <div className="landing">
-          <PersonalCard />
-          <Tools />
+            <PersonalCard />
+            <Tools />
           </div>
+
+          <Selector />
           
-          <Experience />
+          
           <Projects />
           <BottomNav />        
         </body>

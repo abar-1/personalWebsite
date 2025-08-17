@@ -1,0 +1,40 @@
+/* [project]/src/app/Components/selector.css [app-client] (css) */
+.container1 {
+  background: none;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px;
+  display: flex;
+}
+
+.optionButtons {
+  border-radius: 10px;
+  gap: 10px;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+}
+
+.selection {
+  cursor: pointer;
+  background-color: #29262c;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  font-size: large;
+  transition: all .3s ease-in-out;
+}
+
+.active1 {
+  cursor: pointer;
+  background-color: #9393df;
+}
+
+/*# sourceMappingURL=src_app_Components_selector_css_f9ee138c._.single.css.map*/

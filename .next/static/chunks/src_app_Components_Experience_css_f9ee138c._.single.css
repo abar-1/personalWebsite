@@ -15,13 +15,26 @@ p, h3, ul {
 .experience-section {
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  padding: 40px 20px;
+  margin: 20px 40px;
+  padding: 0;
   display: flex;
+  position: relative;
+}
+
+.experience-section:before {
+  content: "";
+  z-index: 1;
+  background: #ccc;
+  width: 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 15%;
 }
 
 .experience-card {
-  background: #14062acc;
+  z-index: 2;
+  background: #0f0422;
   border: 1px solid #eb82fb;
   border-radius: 12px;
   width: 100%;
@@ -29,7 +42,12 @@ p, h3, ul {
   margin-bottom: 24px;
   padding: 20px;
   transition: all .4s ease-in-out;
+  position: relative;
   box-shadow: 0 2px 8px #0000000f;
+}
+
+.experience-card:last-child {
+  margin-bottom: 0;
 }
 
 .experience-card:hover {

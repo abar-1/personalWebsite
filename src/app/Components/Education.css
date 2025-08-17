@@ -1,0 +1,94 @@
+.edu-container {
+  position: relative;
+  margin-top: 20px;
+}
+
+.edu-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 15%;
+  width: 2px;
+  background: #ccc;
+}
+
+.schoolCard {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  position: relative;
+  color: white;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  max-width: 800px;
+  width: 100%;
+  border: 1px solid #eb82fb;
+  background: rgb(15, 4, 34);
+  border-radius: 10px;
+  transition: 0.4s ease-in-out
+}
+
+.schoolCard:hover {
+  transform: scale(1.05);
+
+}
+
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 25%;          /* <-- 25% from left side */
+  width: 2px;         /* thickness of line */
+  background: #ccc;   /* line color */
+}
+
+.school-content {
+ 
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 15px 0px;
+  margin-left: 24px; /* space from the line */
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.school-header {
+  margin-bottom: 8px;
+}
+
+.school-name {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.school-major {
+  margin: 0;
+  font-size: 0.9rem;
+
+}
+
+.school-gradYear {
+  margin: 0;
+  position: absolute;
+  top: 15px;
+  right: 10;
+  font-size: 1.15rem;
+
+}
+
+.school-gpa {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.school-courses {
+  font-size: 0.92rem;
+}
+
+.course {
+  margin-right: 2px;
+}

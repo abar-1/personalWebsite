@@ -1,0 +1,40 @@
+.container1 {
+    display: flex;
+    flex-direction: column; 
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    padding: 50px;
+    widtH: 90%;
+    max-width: 1200px;
+    border-radius: 10px;;
+}
+
+.optionButtons {
+    display: flex;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px;
+
+    gap: 10px;
+
+}
+
+.selection {
+    padding: 10px;
+    border: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+    border-radius: 5px;
+    background-color: rgb(41, 38, 44);
+    width: 100%;
+    transition: 0.3s ease-in-out all;
+    cursor: pointer;
+}
+
+
+.active1 {
+    cursor: pointer;
+    background-color: rgb(147, 147, 223);
+}

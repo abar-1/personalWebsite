@@ -1,7 +1,7 @@
 /* [project]/src/app/Components/personalCard.css [app-client] (css) */
 .container {
   color: #fff;
-  background: #14062acc;
+  background: #0f0422;
   border-radius: 10px;
   flex-direction: row;
   justify-content: center;
@@ -18,22 +18,6 @@
 p {
   margin-left: 1rem;
   padding: 5px;
-}
-
-button {
-  color: #fff;
-  background-color: #510f51;
-  border: 1px solid #000;
-  border-radius: 5px;
-  width: 8rem;
-  margin: 1rem;
-  padding: 10px;
-  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-}
-
-button:hover {
-  cursor: pointer;
-  background: #400940;
 }
 
 .pfp img {

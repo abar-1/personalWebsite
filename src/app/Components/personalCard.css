@@ -6,33 +6,18 @@
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: white;
   padding: 2rem;
-  background: rgb(20, 6, 42, 0.8);
+  background: rgb(15, 4, 34);
   display: flex;
   flex-direction: row;
   gap: 2rem;
   align-items: center;
   justify-content: center;
+
 }
 
 p {
   padding: 5px;
   margin-left: 1rem;
-}
-
-button {
-  background-color: rgb(81, 15, 81);
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid black;
-  margin: 1rem;
-  width: 8rem;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-button:hover {
-  background:rgb(64, 9, 64);
-  cursor: pointer;
 }
 
 .pfp img {

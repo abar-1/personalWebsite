@@ -1,0 +1,93 @@
+/* [project]/src/app/Components/Education.css [app-client] (css) */
+.edu-container {
+  margin-top: 20px;
+  position: relative;
+}
+
+.edu-container:before {
+  content: "";
+  background: #ccc;
+  width: 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 15%;
+}
+
+.schoolCard {
+  color: #fff;
+  background: #0f0422;
+  border: 1px solid #eb82fb;
+  border-radius: 10px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 24px;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  transition: all .4s ease-in-out;
+  display: flex;
+  position: relative;
+}
+
+.schoolCard:hover {
+  transform: scale(1.05);
+}
+
+.timeline-container:before {
+  content: "";
+  background: #ccc;
+  width: 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 25%;
+}
+
+.school-content {
+  color: #fff;
+  z-index: 1;
+  border-radius: 8px;
+  width: 100%;
+  margin-left: 24px;
+  padding: 15px 0;
+  position: relative;
+  box-shadow: 0 2px 8px #00000012;
+}
+
+.school-header {
+  margin-bottom: 8px;
+}
+
+.school-name {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.school-major {
+  margin: 0;
+  font-size: .9rem;
+}
+
+.school-gradYear {
+  margin: 0;
+  font-size: 1.15rem;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
+.school-gpa {
+  margin-bottom: 8px;
+  font-size: .95rem;
+}
+
+.school-courses {
+  font-size: .92rem;
+}
+
+.course {
+  margin-right: 2px;
+}
+
+/*# sourceMappingURL=src_app_Components_Education_css_f9ee138c._.single.css.map*/
