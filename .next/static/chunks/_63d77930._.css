@@ -1,4 +1,9 @@
 /* [project]/src/app/globals.css [app-client] (css) */
+:root {
+  --background: #0d0a39;
+  --foreground: #171717;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -62,7 +67,7 @@ a {
 
 
 /* [project]/src/app/Components/personalCard.css [app-client] (css) */
-.container {
+.personal-container {
   color: #fff;
   background: #0f0422;
   border-radius: 10px;
@@ -422,7 +427,6 @@ p, h3, ul {
 .experience-date {
   color: #f7f6f6;
   white-space: nowrap;
-  font-size: .9rem;
 }
 
 .experience-bullets {
@@ -1341,4 +1345,64 @@ button.swiper-pagination-bullet {
 }
 
 
-/*# sourceMappingURL=_6dcc7da6._.css.map*/
+/* [project]/src/app/Components/Publications.css [app-client] (css) */
+.tools-title {
+  color: #fff;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.container {
+  color: #fff;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: -2vh auto;
+  padding: 2rem;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  display: flex;
+}
+
+.publication-card {
+  z-index: 2;
+  background: #0f0422;
+  border: 1px solid #eb82fb;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 24px;
+  padding: 20px;
+  transition: all .4s ease-in-out;
+  position: relative;
+  box-shadow: 0 2px 8px #0000000f;
+}
+
+.publication-header {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.publication-title {
+  flex: auto;
+  min-width: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.publication-date {
+  white-space: nowrap;
+  text-align: right;
+  flex: 0 0 100px;
+  min-width: 60px;
+}
+
+
+/*# sourceMappingURL=_63d77930._.css.map*/

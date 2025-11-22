@@ -1,0 +1,60 @@
+.tools-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: white;
+  }
+
+.container {
+  margin: -2vh auto;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 1200px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.publication-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 800px;
+    background: rgb(15, 4, 34);
+    border: 1px solid #eb82fb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: 0.4s ease-in-out
+}
+
+.publication-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+  
+.publication-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.publication-date {
+    flex: 0 0 100px;
+    min-width: 60px;
+    white-space: nowrap;
+    text-align: right;
+}
+  
+

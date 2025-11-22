@@ -11,7 +11,7 @@ export default function PersonalCard() {
     console.log('PROFILE:', profile);
 
     return (
-        <div className="container" id="home">
+        <div className="personal-container" id="home">
             <div className="pfp">
                 <Image
                     src={profile}

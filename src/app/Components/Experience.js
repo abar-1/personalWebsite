@@ -7,9 +7,11 @@ const Experience = () => {
       company: "KLoBot",
       title: "Software Development Intern",
       date: "Summer 2025",
-      bulletPoints: ["Working with the dev team to help migrate and update Sharepoint services for various law firms.",
-        "Completed training courses in React.js, .NET core, Python, Microsoft Azure, Generative AI, and C#. "
-      ],
+      bulletPoints: [
+          "Collaborated with a dev team of 20+ backend and frontend engineers to update Sharepoint services for law firms.",
+          "Integrated an AI-powered Natural Language Processing engine into SharePoint services to deliver suggested search results for attorneys by specialization, reducing lawyer lookup time by ~30% for 200+ firm employees.",
+          "Completed training courses in React.js, ASP.NET core, Microsoft Azure, Generative AI, and C#. "
+      ]
     },
     {
       company: "Illinois Institute of Technology",

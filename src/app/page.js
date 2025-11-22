@@ -5,6 +5,7 @@ import Experience from "./Components/Experience";
 import BottomNav from "./Components/BottomNav";
 import Projects from "./Components/Projects";
 import Selector from "./Components/selector";
+import Publications from "./Components/Publications";
 
 
 export default function HomePage() {
@@ -20,6 +21,8 @@ export default function HomePage() {
             <PersonalCard />
             <Tools />
           </div>
+
+          <Publications />
 
           <Selector />
           

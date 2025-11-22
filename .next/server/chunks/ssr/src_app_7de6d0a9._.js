@@ -46,7 +46,7 @@ function PersonalCard() {
     const name = "ANEESH";
     console.log('PROFILE:', __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$assets$2f$IMG_3352$2e$png$2e$mjs__$7b$__IMAGE__$3d3e$__$225b$project$5d2f$src$2f$app$2f$assets$2f$IMG_3352$2e$png__$28$static__in__ecmascript$2922$__$7d$__$5b$app$2d$ssr$5d$__$28$structured__image__object$2c$__ecmascript$29$__["default"]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "container",
+        className: "personal-container",
         id: "home",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1882,8 +1882,9 @@ const Experience = ()=>{
             title: "Software Development Intern",
             date: "Summer 2025",
             bulletPoints: [
-                "Working with the dev team to help migrate and update Sharepoint services for various law firms.",
-                "Completed training courses in React.js, .NET core, Python, Microsoft Azure, Generative AI, and C#. "
+                "Collaborated with a dev team of 20+ backend and frontend engineers to update Sharepoint services for law firms.",
+                "Integrated an AI-powered Natural Language Processing engine into SharePoint services to deliver suggested search results for attorneys by specialization, reducing lawyer lookup time by ~30% for 200+ firm employees.",
+                "Completed training courses in React.js, ASP.NET core, Microsoft Azure, Generative AI, and C#. "
             ]
         },
         {
@@ -1933,7 +1934,7 @@ const Experience = ()=>{
                                             children: exp.title
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/Components/Experience.js",
-                                            lineNumber: 53,
+                                            lineNumber: 55,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1941,13 +1942,13 @@ const Experience = ()=>{
                                             children: exp.company
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/Components/Experience.js",
-                                            lineNumber: 54,
+                                            lineNumber: 56,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/Components/Experience.js",
-                                    lineNumber: 52,
+                                    lineNumber: 54,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1955,13 +1956,13 @@ const Experience = ()=>{
                                     children: exp.date
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/Components/Experience.js",
-                                    lineNumber: 56,
+                                    lineNumber: 58,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/Components/Experience.js",
-                            lineNumber: 51,
+                            lineNumber: 53,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1970,28 +1971,28 @@ const Experience = ()=>{
                                     children: point
                                 }, i, false, {
                                     fileName: "[project]/src/app/Components/Experience.js",
-                                    lineNumber: 60,
+                                    lineNumber: 62,
                                     columnNumber: 17
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/src/app/Components/Experience.js",
-                            lineNumber: 58,
+                            lineNumber: 60,
                             columnNumber: 13
                         }, this)
                     ]
                 }, idx, true, {
                     fileName: "[project]/src/app/Components/Experience.js",
-                    lineNumber: 50,
+                    lineNumber: 52,
                     columnNumber: 13
                 }, this))
         }, void 0, false, {
             fileName: "[project]/src/app/Components/Experience.js",
-            lineNumber: 48,
+            lineNumber: 50,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/Components/Experience.js",
-        lineNumber: 46,
+        lineNumber: 48,
         columnNumber: 5
     }, this);
 };
