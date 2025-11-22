@@ -13,7 +13,7 @@ export default function Publications() {
   ];
   return (
     <div className='container'>
-        <h2 className="tools-title">Publications</h2>
+        <h2 className="tools-title">Publication(s)</h2>
         <div className="cards">
           {publications.map((pub, idx) => (
             <div key={idx} className="publication-card">
