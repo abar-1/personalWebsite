@@ -7,8 +7,6 @@ export default function Education() {
       gradYear: "2029",
       type: "BS",
       major: "Data Science + Computer Science",
-      activities: "AFROTC",
-      GPA: "Don't have one yet",
       relevantCourses: ["Multivariate Calculus", "Java Programming"]
     },
     {
@@ -17,7 +15,6 @@ export default function Education() {
       type: "High School",
       major: "Focus in Computer Science",
       activities: "American Computer Science League, Debate",
-      GPA: "3.8",
       relevantCourses: [
         "Object Oriented Programming (Java)",
         "Advanced Programming (Java)",
@@ -32,20 +29,21 @@ export default function Education() {
   return (
     <div className="edu-container">
         {schools.map((schl, idx) => (
-          <div key={idx} className="schoolCard">
-
+          <div key={idx} className="school-card">
             <div className="school-content">
               <div className="school-header">
-                <h2 className="school-name">{schl.name}</h2>
-                <h5 className="school-major">{schl.major}, {schl.type}</h5>
-                <p className="school-gradYear">{schl.gradYear}</p>
+                <div>
+                  <h3 className="school-name">{schl.name}</h3>
+                  <p className="school-major">{schl.major}, {schl.type}</p>
+                  {schl.activities && (
+                    <p className="school-activities">{schl.activities}</p>
+                  )}
+                </div>
+                <p className="school-grad-year">{schl.gradYear}</p>
               </div>
-              <p className="school-gpa">GPA: {schl.GPA}</p>
               <div className="school-courses">
-                <span>Relevant Courses: </span>
-                {schl.relevantCourses.map((course, idx) => (
-                  <span key={idx} className="course">{course}{idx < schl.relevantCourses.length - 1 ? ', ' : ''}</span>
-                ))}
+                <span className="school-courses-label">Relevant courses</span>
+                <p>{schl.relevantCourses.join(', ')}</p>
               </div>
             </div>
           </div>

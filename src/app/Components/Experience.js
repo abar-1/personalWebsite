@@ -45,8 +45,6 @@ const Experience = () => {
   ];
 
   return (
-    <div>
-        {/* <h1 className="heading">Experience</h1> */}
         <section className="experience-section" id="experience">
         {experiences.map((exp, idx) => (
             <div key={idx} className="experience-card">
@@ -66,7 +64,6 @@ const Experience = () => {
         
         ))}
         </section>
-    </div>
   );
 };
 

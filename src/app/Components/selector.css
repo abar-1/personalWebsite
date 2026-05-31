@@ -1,40 +1,39 @@
-.container1 {
-    display: flex;
-    flex-direction: column; 
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    padding: 50px;
-    widtH: 90%;
-    max-width: 1200px;
-    border-radius: 10px;;
+.selector-section {
+  padding-top: 0;
 }
 
-.optionButtons {
-    display: flex;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 800px;
-
-    gap: 10px;
-
+.selector-toggle {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 2rem;
 }
 
-.selection {
-    padding: 10px;
-    border: none;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: large;
-    border-radius: 5px;
-    background-color: rgb(41, 38, 44);
-    width: 100%;
-    transition: 0.3s ease-in-out all;
-    cursor: pointer;
+.selector-btn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
+.selector-btn:hover {
+  color: var(--text-secondary);
+}
 
-.active1 {
-    cursor: pointer;
-    background-color: rgb(147, 147, 223);
+.selector-btn-active {
+  background: var(--accent-muted);
+  color: var(--accent);
+}
+
+.selector-content {
+  width: 100%;
 }

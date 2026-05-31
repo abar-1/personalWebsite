@@ -103,13 +103,13 @@ export default function Projects() {
 
     ]
     return (
-        <div>
-            <h1 className="header" id="projects">Projects</h1>
+        <div className="projects-wrapper" id="projects">
+            <h2 className="projects-header">Projects</h2>
             <section className="projects-section">
                 {projects.map((proj, idx) => (
                     <div key={idx} className="project-card">
                         <div className="title">
-                            <h1>{proj.title}</h1>
+                            <h3>{proj.title}</h3>
                         </div>
                         <div className="project-image">
                             <div className="swiper-container">

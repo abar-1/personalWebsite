@@ -1,6 +1,15 @@
+import { DM_Sans } from 'next/font/google';
+import './globals.css';
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+});
+
 export const metadata = {
   title: 'Aneesh Bargaje | Portfolio',
-  description: 'Software Developer, Researcher, Cybersecurity Intern',
+  description:
+    'Software engineer and data scientist interested in building systems that turn data into business decisions.',
 };
 
 export const viewport = {
@@ -11,7 +20,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={dmSans.variable}>{children}</body>
     </html>
   );
 }

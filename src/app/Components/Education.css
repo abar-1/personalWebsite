@@ -1,94 +1,67 @@
 .edu-container {
-  position: relative;
-  margin-top: 20px;
-}
-
-.edu-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 15%;
-  width: 2px;
-  background: #ccc;
-}
-
-.schoolCard {
   display: flex;
-  position: relative;
-  align-items: flex-start;
-  margin-bottom: 24px;
-  position: relative;
-  color: white;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  max-width: 800px;
+  flex-direction: column;
+  gap: 1rem;
   width: 100%;
-  border: 1px solid #eb82fb;
-  background: rgb(15, 4, 34);
-  border-radius: 10px;
-  transition: 0.4s ease-in-out
 }
 
-.schoolCard:hover {
-  transform: scale(1.05);
-
+.school-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s ease;
 }
 
-.timeline-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 25%;          /* <-- 25% from left side */
-  width: 2px;         /* thickness of line */
-  background: #ccc;   /* line color */
+.school-card:hover {
+  border-color: var(--border-accent);
 }
 
-.school-content {
- 
-  color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  padding: 15px 0px;
-  margin-left: 24px; /* space from the line */
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
 .school-header {
-  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.875rem;
 }
 
 .school-name {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
 }
 
 .school-major {
-  margin: 0;
   font-size: 0.9rem;
-
+  color: var(--text-secondary);
+  margin-bottom: 0.125rem;
 }
 
-.school-gradYear {
-  margin: 0;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 1.15rem;
-
+.school-activities {
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
-.school-gpa {
-  font-size: 0.95rem;
-  margin-bottom: 8px;
+.school-grad-year {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.school-courses {
-  font-size: 0.92rem;
+.school-courses-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.375rem;
 }
 
-.course {
-  margin-right: 2px;
+.school-courses p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
 }
