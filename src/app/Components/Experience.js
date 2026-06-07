@@ -1,70 +1,158 @@
-import React from "react";
-import "./Experience.css";
+"use client";
 
-const Experience = () => {
-  const experiences = [
-    {
-      company: "KLoBot",
-      title: "Software Development Intern",
-      date: "Summer 2025",
-      bulletPoints: [
-          "Collaborated with a dev team of 20+ backend and frontend engineers to update Sharepoint services for law firms.",
-          "Integrated an AI-powered Natural Language Processing engine into SharePoint services to deliver suggested search results for attorneys by specialization, reducing lawyer lookup time by ~30% for 200+ firm employees.",
-          "Completed training courses in React.js, ASP.NET core, Microsoft Azure, Generative AI, and C#. "
-      ]
-    },
-    {
-      company: "Illinois Institute of Technology",
-      title: "Machine Learning Research Intern",
-      date: "August 2024 - Present",
-      bulletPoints: [
-        "Led the digitalization of 16 Quadrature Amplitude Modulation (QAM) modulation and demodulation with Python that might replace QAM hardware in devices.",
-        "Built a decision tree and random forest model capable of decoding 16 QAM signals with Gaussian and impulse noise with a 91.4% accuracy.",
-        "Presenting at IITs Real-Time Communications Conference in October 2025.",
-      ],
-    },
-    {
-      company: "Code Ninjas",
-      title: "Coding Sensei/Manager",
-      date: "Summers of 2023 and 2024",
-      bulletPoints: [
-        "Helped 20-30 students to  develop problem-solving and software development skills. Topics ranged from block coding to scripting in Java and Python, often in a one-on-one setting. ",
-        "In my second summer, I managed the Elmhurst team of 6+ employees.",
-        "Assisted in planning schedule for school year and summer camps.",
-      ],
-    },
-    {
-      company: "Illinois State Treasurers Office",
-      title: "Cybersecurity Intern",
-      date: "September 2023 - April 2024",
-      bulletPoints: [
-        "Organized monthly vulnerability scans in partnership with the Cybersecurity and Infrastructure Security Agency (CISA), identifying and documenting 4 vulnerabilities in various public-facing domains.",
-        "Investigated applications of machine learning for detecting fraudulent claims in Illinois Unclaimed Property program, laying groundwork for potential automation and anomaly detection models."
-      ]
+import { useEffect, useRef } from "react";
+
+const experiences = [
+  {
+    company: "Flexco",
+    title: "IT Intern",
+    date: "Summer 2026",
+    bulletPoints: [],
+    placeholder: true,
+  },
+  {
+    company: "KLoBot",
+    title: "Software Development Intern",
+    date: "Summer 2025",
+    bulletPoints: [
+      "Collaborated with a dev team of 20+ backend and frontend engineers to update Sharepoint services for law firms.",
+      "Integrated an AI-powered Natural Language Processing engine into SharePoint services to deliver suggested search results for attorneys by specialization, reducing lawyer lookup time by ~30% for 200+ firm employees.",
+      "Completed training courses in React.js, ASP.NET core, Microsoft Azure, Generative AI, and C#.",
+    ],
+  },
+  {
+    company: "Illinois Institute of Technology",
+    title: "Machine Learning Research Intern",
+    date: "August 2024 - Present",
+    bulletPoints: [
+      "Led the digitalization of 16 Quadrature Amplitude Modulation (QAM) modulation and demodulation with Python that might replace QAM hardware in devices.",
+      "Built a decision tree and random forest model capable of decoding 16 QAM signals with Gaussian and impulse noise with a 91.4% accuracy.",
+      "Presenting at IITs Real-Time Communications Conference in October 2025.",
+    ],
+  },
+];
+
+export default function Experience() {
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const cards = list.querySelectorAll(".exp-card-anim");
+
+    if (prefersReduced) {
+      cards.forEach((c) => {
+        c.style.opacity = "1";
+        c.style.transform = "none";
+      });
+      return;
     }
-  ];
+
+    cards.forEach((c) => {
+      c.style.opacity = "0";
+      c.style.transform = "translateY(16px)";
+      c.style.transition =
+        "opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1), transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)";
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            cards.forEach((card, i) => {
+              setTimeout(() => {
+                card.style.opacity = "1";
+                card.style.transform = "translateY(0)";
+              }, i * 90);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: "0px 0px -20px 0px" }
+    );
+
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-        <section className="experience-section" id="experience">
-        {experiences.map((exp, idx) => (
-            <div key={idx} className="experience-card">
-            <div className="experience-header">
-                <div>
-                <h3 className="experience-title">{exp.title}</h3>
-                <p className="experience-company">{exp.company}</p>
-                </div>
-                <p className="experience-date">{exp.date}</p>
-            </div>
-            <ul className="experience-bullets">
-                {exp.bulletPoints.map((point, i) => (
-                <li key={i}>{point}</li>
-                ))}
-            </ul>
-            </div>
-        
-        ))}
-        </section>
-  );
-};
+    <div ref={listRef}>
+      {experiences.map((exp) => (
+        <div key={`${exp.company}-${exp.title}`} className="exp-card exp-card-anim">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              flexWrap: "wrap",
+              gap: "0.25rem",
+              marginBottom: "0.25rem",
+            }}
+          >
+            <h3
+              style={{
+                fontSize: "0.9375rem",
+                fontWeight: 600,
+                color: "var(--text-primary)",
+                margin: 0,
+              }}
+            >
+              {exp.title}
+            </h3>
+            <span
+              style={{
+                fontSize: "0.8125rem",
+                color: "var(--text-muted)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {exp.date}
+            </span>
+          </div>
 
-export default Experience;
+          <p
+            style={{
+              fontSize: "0.875rem",
+              color: "var(--text-secondary)",
+              margin: "0 0 0.75rem 0",
+            }}
+          >
+            {exp.company}
+          </p>
+
+          {exp.placeholder || exp.bulletPoints.length === 0 || exp.bulletPoints.every((b) => !b.trim()) ? (
+            <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", fontStyle: "italic" }}>
+              Details coming soon.
+            </p>
+          ) : (
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: "1.125rem",
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.375rem",
+              }}
+            >
+              {exp.bulletPoints.filter((b) => b.trim()).map((point, i) => (
+                <li
+                  key={i}
+                  style={{
+                    fontSize: "0.8125rem",
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {point}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}

@@ -1,37 +1,44 @@
 "use client";
-import { useState } from 'react';
-import './selector.css';
-import Experience from './Experience';
-import Education from './Education';
+
+import { useState } from "react";
+import Experience from "./Experience";
+import Education from "./Education";
 
 export default function Selector() {
-    const [selected, setSelected] = useState("experience");
+  const [selected, setSelected] = useState("experience");
 
-    const handleClick = (newVal) => {
-        if (selected !== newVal) {
-            setSelected(newVal);
-        }
-    };
+  return (
+    <section id="experience" style={{ padding: "4rem 0" }}>
+      <div className="container">
+        <div
+          style={{
+            display: "inline-flex",
+            gap: "0.25rem",
+            padding: "0.25rem",
+            background: "var(--bg-elevated)",
+            borderRadius: "0.625rem",
+            border: "1px solid var(--border)",
+            marginBottom: "2rem",
+          }}
+        >
+          <button
+            className={`selector-btn${selected === "experience" ? " active" : ""}`}
+            onClick={() => setSelected("experience")}
+          >
+            Experience
+          </button>
+          <button
+            className={`selector-btn${selected === "education" ? " active" : ""}`}
+            onClick={() => setSelected("education")}
+          >
+            Education
+          </button>
+        </div>
 
-    return (
-        <section className="section selector-section">
-            <div className="selector-toggle">
-                <button
-                    className={`selector-btn ${selected === 'experience' ? 'selector-btn-active' : ''}`}
-                    onClick={() => handleClick("experience")}
-                >
-                    Experience
-                </button>
-                <button
-                    className={`selector-btn ${selected === 'education' ? 'selector-btn-active' : ''}`}
-                    onClick={() => handleClick("education")}
-                >
-                    Education
-                </button>
-            </div>
-            <div className="selector-content">
-                {selected === "experience" ? <Experience /> : <Education />}
-            </div>
-        </section>
-    );
+        <div className="selector-content">
+          {selected === "experience" ? <Experience /> : <Education />}
+        </div>
+      </div>
+    </section>
+  );
 }
