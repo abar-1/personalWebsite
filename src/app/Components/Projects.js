@@ -36,21 +36,6 @@ const projects = [
     ],
     tech: ["Flask", "React", "TensorFlow", "Spotify API"],
     github: "https://github.com/abar-1/musicSentiment",
-    featured: true,
-    category: "ml",
-  },
-  {
-    title: "QAM-16 ML Demodulator",
-    images: [],
-    description:
-      "Machine learning system that decodes 16-QAM signals, potentially replacing hardware demodulators.",
-    bullets: [
-      "Built decision tree and random forest models to decode 16 QAM signals.",
-      "Achieved 91.4% accuracy with Gaussian and impulse noise.",
-      "Presented at IIT's Real-Time Communications Conference, October 2025.",
-    ],
-    tech: ["Python", "scikit-learn", "NumPy", "Matplotlib"],
-    featured: true,
     category: "ml",
   },
   {
@@ -84,9 +69,6 @@ const projects = [
   },
 ];
 
-const featuredProjects = projects.filter((p) => p.featured);
-const otherProjects = projects.filter((p) => !p.featured);
-
 const categoryLabels = {
   ml: { label: "DS / ML", color: "var(--accent)" },
   web: { label: "Web", color: "#38bdf8" },
@@ -108,7 +90,7 @@ function CategoryBadge({ category }) {
         background: "rgba(139, 92, 246, 0.12)",
         padding: "0.2rem 0.5rem",
         borderRadius: "0.25rem",
-        border: `1px solid rgba(139, 92, 246, 0.25)`,
+        border: "1px solid rgba(139, 92, 246, 0.25)",
       }}
     >
       {info.label}
@@ -124,75 +106,36 @@ function GitHubIcon() {
   );
 }
 
-function ProjectImageCarousel({ images, onFullscreen, projectIndex }) {
-  if (!images || images.length === 0) return null;
+function ProjectCard({ project, projectIndex, onFullscreen }) {
+  const preview = project.images?.[0];
 
   return (
-    <div className="project-image-carousel">
-      <Swiper
-        modules={[Navigation, Pagination, A11y]}
-        spaceBetween={0}
-        slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        className="project-swiper"
-      >
-        {images.map((img, imgIdx) => (
-          <SwiperSlide key={imgIdx}>
+    <article className="project-card-enhanced">
+      {preview && (
+        <div className="project-image-preview">
+          <button
+            type="button"
+            className="project-image-btn"
+            onClick={() => onFullscreen(projectIndex, 0)}
+            aria-label={`View ${project.title} screenshots`}
+          >
             <Image
-              src={img}
-              alt={`Project preview ${imgIdx + 1}`}
+              src={preview}
+              alt={`${project.title} preview`}
               width={400}
               height={220}
               style={{ objectFit: "cover", width: "100%", height: "100%" }}
             />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <button
-        className="fullscreen-btn"
-        onClick={() => onFullscreen(projectIndex, 0)}
-        title="View fullscreen"
-        type="button"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
-        </svg>
-      </button>
-    </div>
-  );
-}
-
-function FeaturedCard({ project, projectIndex, onFullscreen }) {
-  return (
-    <div className="project-featured" style={{ flex: "1 1 300px", minWidth: 0 }}>
-      <div
-        style={{
-          height: "3px",
-          background: "linear-gradient(90deg, var(--accent), #6366f1)",
-        }}
-      />
-      {project.images?.length > 0 && (
-        <ProjectImageCarousel
-          images={project.images}
-          onFullscreen={onFullscreen}
-          projectIndex={projectIndex}
-        />
+            {project.images.length > 1 && (
+              <span className="project-image-count">{project.images.length} screenshots</span>
+            )}
+          </button>
+        </div>
       )}
-      <div style={{ padding: "1.5rem" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            marginBottom: "0.75rem",
-            gap: "0.5rem",
-          }}
-        >
-          <h3 style={{ fontSize: "1rem", fontWeight: 600, color: "var(--text-primary)", margin: 0 }}>
-            {project.title}
-          </h3>
-          <div style={{ display: "flex", gap: "0.375rem", alignItems: "center", flexShrink: 0 }}>
+      <div className="project-card-body">
+        <div className="project-card-header">
+          <h3 className="project-card-title">{project.title}</h3>
+          <div className="project-card-actions">
             <CategoryBadge category={project.category} />
             {project.github && (
               <a
@@ -200,86 +143,31 @@ function FeaturedCard({ project, projectIndex, onFullscreen }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} GitHub`}
-                style={{ display: "flex", alignItems: "center", color: "var(--text-muted)" }}
+                className="project-github-link"
               >
                 <GitHubIcon />
               </a>
             )}
           </div>
         </div>
-        <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.6, margin: "0 0 1rem 0" }}>
-          {project.description}
-        </p>
-        <ul style={{ margin: "0 0 1rem 0", paddingLeft: "1rem", display: "flex", flexDirection: "column", gap: "0.3rem" }}>
+        <p className="project-card-description">{project.description}</p>
+        <ul className="project-card-bullets">
           {project.bullets.map((b, i) => (
-            <li key={i} style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: 1.55 }}>
-              {b}
-            </li>
+            <li key={i}>{b}</li>
           ))}
         </ul>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
+        <div className="project-card-tech">
           {project.tech.map((t) => (
             <span key={t} className="tech-badge">{t}</span>
           ))}
         </div>
       </div>
-    </div>
-  );
-}
-
-function ProjectCard({ project, projectIndex, onFullscreen }) {
-  return (
-    <div className="project-card-enhanced">
-      {project.images?.length > 0 && (
-        <ProjectImageCarousel
-          images={project.images}
-          onFullscreen={onFullscreen}
-          projectIndex={projectIndex}
-        />
-      )}
-      <div style={{ padding: "1.25rem" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.625rem", gap: "0.5rem" }}>
-          <h3 style={{ fontSize: "0.9375rem", fontWeight: 600, color: "var(--text-primary)", margin: 0 }}>
-            {project.title}
-          </h3>
-          <div style={{ display: "flex", gap: "0.375rem", flexShrink: 0 }}>
-            <CategoryBadge category={project.category} />
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.title} GitHub`}
-                style={{ color: "var(--text-muted)", display: "flex", alignItems: "center" }}
-              >
-                <GitHubIcon />
-              </a>
-            )}
-          </div>
-        </div>
-        <p style={{ fontSize: "0.8125rem", color: "var(--text-secondary)", lineHeight: 1.6, margin: "0 0 0.875rem 0" }}>
-          {project.description}
-        </p>
-        <ul style={{ margin: "0 0 0.875rem 0", paddingLeft: "1rem", display: "flex", flexDirection: "column", gap: "0.3rem" }}>
-          {project.bullets.slice(0, 3).map((b, i) => (
-            <li key={i} style={{ fontSize: "0.8rem", color: "var(--text-muted)", lineHeight: 1.55 }}>
-              {b}
-            </li>
-          ))}
-        </ul>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
-          {project.tech.map((t) => (
-            <span key={t} className="tech-badge">{t}</span>
-          ))}
-        </div>
-      </div>
-    </div>
+    </article>
   );
 }
 
 export default function Projects() {
-  const sectionRef = useRef(null);
-  const featuredRef = useRef(null);
+  const gridRef = useRef(null);
   const [fullscreenProject, setFullscreenProject] = useState(null);
   const [fullscreenIndex, setFullscreenIndex] = useState(0);
 
@@ -303,13 +191,13 @@ export default function Projects() {
   }, [fullscreenProject]);
 
   useEffect(() => {
-    const featured = featuredRef.current;
-    if (!featured) return;
+    const grid = gridRef.current;
+    if (!grid) return;
 
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
 
-    const cards = Array.from(featured.children);
+    const cards = Array.from(grid.children);
     cards.forEach((c) => {
       c.style.opacity = "0";
       c.style.transform = "translateY(20px)";
@@ -325,26 +213,24 @@ export default function Projects() {
               setTimeout(() => {
                 card.style.opacity = "1";
                 card.style.transform = "translateY(0)";
-              }, i * 120);
+              }, i * 100);
             });
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
 
-    observer.observe(featured);
+    observer.observe(grid);
     return () => observer.disconnect();
   }, []);
 
-  const getProjectIndex = (project) => projects.indexOf(project);
-
   return (
     <>
-      <section id="projects" ref={sectionRef} style={{ padding: "4rem 0" }}>
+      <section id="projects" style={{ padding: "4rem 0" }}>
         <div className="container">
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.25rem" }}>
+          <div className="projects-section-header">
             <p className="section-label" style={{ margin: 0 }}>Projects</p>
             <svg width="80" height="16" viewBox="0 0 80 16" fill="none" aria-hidden="true" style={{ opacity: 0.4 }}>
               <path
@@ -357,44 +243,16 @@ export default function Projects() {
             </svg>
           </div>
 
-          <div
-            ref={featuredRef}
-            style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "2rem" }}
-          >
-            {featuredProjects.map((p) => (
-              <FeaturedCard
-                key={p.title}
-                project={p}
-                projectIndex={getProjectIndex(p)}
+          <div ref={gridRef} className="projects-grid">
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                project={project}
+                projectIndex={index}
                 onFullscreen={openFullscreen}
               />
             ))}
           </div>
-
-          {otherProjects.length > 0 && (
-            <Swiper
-              modules={[Navigation, Pagination]}
-              spaceBetween={16}
-              slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
-              breakpoints={{
-                640: { slidesPerView: 1.2 },
-                768: { slidesPerView: 1.5 },
-              }}
-              style={{ paddingBottom: "2.5rem" }}
-            >
-              {otherProjects.map((p) => (
-                <SwiperSlide key={p.title}>
-                  <ProjectCard
-                    project={p}
-                    projectIndex={getProjectIndex(p)}
-                    onFullscreen={openFullscreen}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
         </div>
       </section>
 
