@@ -4,11 +4,30 @@ import { useEffect, useRef } from "react";
 
 const experiences = [
   {
+    company: "Purdue Daniel's School of Business",
+    title: "Incoming Marketing Data Science Intern",
+    date: "Fall 2026",
+    bulletPoints:[
+      ""
+    ],
+    placeholder: true
+  },
+  {
     company: "Flexco",
     title: "IT Intern",
     date: "Summer 2026",
-    bulletPoints: [],
-    placeholder: true,
+    bulletPoints: ["Working on RPA projects, LLM Optimization (QLoRA), and Data Analytics"],
+  },
+  {
+    company: "Purdue Instructional Innovations",
+    title: "Software Engineering Intern",
+    date: "Dec 2025 - May 2026",
+    bulletPoints: [
+      "Engineered an asynchronous configuration service in C#/.NET allowing users to toggle between bulk and sequential data loading for group assessments; designed EF Core migrations and domain models to reduce API payload sizes and optimize database query efficiency.",
+      "Developed reusable frontend components with React.js for a learning management system used by 3000+ Purdue students.",
+      "Employed Azurite and SQL LocalDB for local testing and developing, simulating production services, and to optimize integration.",
+      "Participated in weekly standups to discuss progress and challenges with the team."
+    ],
   },
   {
     company: "KLoBot",
