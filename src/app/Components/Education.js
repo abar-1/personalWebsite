@@ -1,5 +1,7 @@
 "use client";
 
+import Reveal from "./Reveal";
+
 const schools = [
   {
     name: "Purdue University",
@@ -19,7 +21,6 @@ const schools = [
     gradYear: "2025",
     type: "High School",
     major: "Focus in Computer Science",
-    activities: "American Computer Science League, Debate",
     relevantCourses: [
       "Object Oriented Programming (Java)",
       "Advanced Programming (Java)",
@@ -33,62 +34,22 @@ const schools = [
 
 export default function Education() {
   return (
-    <div>
+    <Reveal className="entry-list" stagger>
       {schools.map((schl) => (
-        <div key={schl.name} className="exp-card">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              flexWrap: "wrap",
-              gap: "0.25rem",
-              marginBottom: "0.25rem",
-            }}
-          >
-            <h3
-              style={{
-                fontSize: "0.9375rem",
-                fontWeight: 600,
-                color: "var(--text-primary)",
-                margin: 0,
-              }}
-            >
-              {schl.major}, {schl.type}
-            </h3>
-            <span style={{ fontSize: "0.8125rem", color: "var(--text-muted)" }}>
-              {schl.gradYear}
-            </span>
-          </div>
-
-          <p
-            style={{
-              fontSize: "0.875rem",
-              color: "var(--text-secondary)",
-              margin: "0 0 0.75rem 0",
-            }}
-          >
-            {schl.name}
-          </p>
-
-          {schl.activities && (
-            <p
-              style={{
-                fontSize: "0.8125rem",
-                color: "var(--text-muted)",
-                margin: "0 0 0.75rem 0",
-              }}
-            >
-              {schl.activities}
+        <div className="entry reveal" key={schl.name}>
+          <div className="entry-date">{schl.gradYear}</div>
+          <div>
+            <h3 className="entry-role">{schl.name}</h3>
+            <p className="entry-org">
+              {schl.type} · {schl.major}
             </p>
-          )}
-
-          <p style={{ fontSize: "0.8125rem", color: "var(--text-secondary)", lineHeight: 1.6, margin: 0 }}>
-            <span style={{ color: "var(--text-muted)", fontWeight: 500 }}>Relevant courses: </span>
-            {schl.relevantCourses.join(", ")}
-          </p>
+            <p className="entry-courses">
+              <span className="lbl">Relevant coursework</span>
+              {schl.relevantCourses.join(" · ")}
+            </p>
+          </div>
         </div>
       ))}
-    </div>
+    </Reveal>
   );
 }

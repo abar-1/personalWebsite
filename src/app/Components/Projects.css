@@ -1,137 +1,172 @@
-.projects-section-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
-
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1rem;
-  align-items: stretch;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
 }
 
-.project-image-preview {
-  width: 100%;
-  height: 200px;
-  background: var(--bg-subtle);
+@media (min-width: 1040px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 }
 
-.project-image-btn {
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.2s var(--ease), transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+
+.project-card:hover {
+  border-color: rgba(91, 141, 239, 0.45);
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px -18px rgba(91, 141, 239, 0.45),
+    0 0 0 1px rgba(91, 141, 239, 0.12);
+}
+
+.project-thumb {
   position: relative;
   display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 16 / 9;
   padding: 0;
   border: none;
-  background: none;
-  cursor: pointer;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
   overflow: hidden;
 }
 
-.project-image-btn img {
-  transition: transform 0.3s ease;
+.project-thumb img {
+  transition: transform 0.3s var(--ease);
 }
 
-.project-image-btn:hover img {
-  transform: scale(1.03);
+.project-thumb:hover img {
+  transform: scale(1.02);
 }
 
-.project-image-count {
+.project-thumb-count {
   position: absolute;
   bottom: 0.625rem;
   right: 0.625rem;
+  font-family: var(--font-mono);
   font-size: 0.6875rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.65);
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--line);
   padding: 0.2rem 0.5rem;
-  border-radius: 0.25rem;
+  border-radius: 4px;
 }
 
-.project-card-body {
-  padding: 1.25rem;
+.project-body {
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding: 1.5rem;
 }
 
-.project-card-header {
+.project-head {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: baseline;
+  gap: 0.75rem;
   margin-bottom: 0.625rem;
-  gap: 0.5rem;
 }
 
-.project-card-title {
-  font-size: 0.9375rem;
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.3125rem;
   font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
 
-.project-card-actions {
-  display: flex;
-  gap: 0.375rem;
-  align-items: center;
+.project-cat {
   flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 
-.project-github-link {
-  display: flex;
-  align-items: center;
-  color: var(--text-muted);
-  transition: color 0.2s ease;
+.project-desc {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin-bottom: 1rem;
 }
 
-.project-github-link:hover {
-  color: var(--text-secondary);
-}
-
-.project-card-description {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0 0 0.875rem 0;
-}
-
-.project-card-bullets {
-  margin: 0 0 0.875rem 0;
-  padding-left: 1rem;
+.project-bullets {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.45rem;
+  margin-bottom: 1.5rem;
   flex: 1;
 }
 
-.project-card-bullets li {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+.project-bullets li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.9375rem;
   line-height: 1.55;
+  color: var(--ink-2);
 }
 
-.project-card-tech {
+.project-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 1px;
+  background: var(--ink-3);
+}
+
+.project-foot {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   margin-top: auto;
+  flex-wrap: wrap;
 }
 
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+
+.project-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---- Fullscreen gallery modal ---- */
 .fullscreen-modal {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(8, 8, 9, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   cursor: pointer;
+  animation: fadeIn 0.2s var(--ease);
 }
 
 .fullscreen-content {
@@ -155,39 +190,32 @@
   background: transparent;
 }
 
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1001;
-  transition: background-color 0.2s ease;
-}
-
-.close-btn:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
 .fullscreen-swiper .swiper-slide img {
   transform: none !important;
   transition: none !important;
 }
 
-@media (max-width: 640px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  transition: border-color 0.15s var(--ease);
+}
+
+.close-btn:hover {
+  border-color: var(--line-strong);
+}
+
+body.modal-open {
+  overflow: hidden;
 }
