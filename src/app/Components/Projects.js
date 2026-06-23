@@ -9,6 +9,19 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./Projects.css";
 import Reveal from "./Reveal";
+import BorderGlow from "./BorderGlow";
+
+const GLOW = {
+  glowColor: "228 100 72",
+  backgroundColor: "#1f1f24",
+  colors: ["#2347d9", "#6e8bff", "#aab8ff"],
+  borderRadius: 16,
+  glowRadius: 34,
+  coneSpread: 24,
+  edgeSensitivity: 34,
+  glowIntensity: 0.9,
+  fillOpacity: 0.35,
+};
 
 import moodMusic from "../assets/projects/moodMusic.png";
 import ecom2 from "../assets/projects/ecom2.png";
@@ -88,65 +101,67 @@ function ProjectCard({ project, projectIndex, onFullscreen }) {
   const preview = project.images?.[0];
 
   return (
-    <article className="project-card reveal">
-      {preview && (
-        <button
-          type="button"
-          className="project-thumb"
-          onClick={() => onFullscreen(projectIndex, 0)}
-          aria-label={`View ${project.title} screenshots`}
-        >
-          <Image
-            src={preview}
-            alt={`${project.title} preview`}
-            width={520}
-            height={280}
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
-          />
-          {project.images.length > 1 && (
-            <span className="project-thumb-count">
-              {project.images.length} screenshots
-            </span>
-          )}
-        </button>
-      )}
-
-      <div className="project-body">
-        <div className="project-head">
-          <h3 className="project-title">{project.title}</h3>
-          <span className="project-cat">{project.category}</span>
-        </div>
-
-        <p className="project-desc">{project.description}</p>
-
-        <ul className="project-bullets">
-          {project.bullets.map((b, i) => (
-            <li key={i}>{b}</li>
-          ))}
-        </ul>
-
-        <div className="project-foot">
-          <div className="tag-row">
-            {project.tech.map((t) => (
-              <span key={t} className="tag">
-                {t}
+    <div className="reveal card-wrap">
+      <BorderGlow className="glow-card project-card" {...GLOW}>
+        {preview && (
+          <button
+            type="button"
+            className="project-thumb"
+            onClick={() => onFullscreen(projectIndex, 0)}
+            aria-label={`View ${project.title} screenshots`}
+          >
+            <Image
+              src={preview}
+              alt={`${project.title} preview`}
+              width={520}
+              height={280}
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            />
+            {project.images.length > 1 && (
+              <span className="project-thumb-count">
+                {project.images.length} screenshots
               </span>
-            ))}
+            )}
+          </button>
+        )}
+
+        <div className="project-body">
+          <div className="project-head">
+            <h3 className="project-title">{project.title}</h3>
+            <span className="project-cat">{project.category}</span>
           </div>
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              Code
-              <ArrowIcon />
-            </a>
-          )}
+
+          <p className="project-desc">{project.description}</p>
+
+          <ul className="project-bullets">
+            {project.bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+
+          <div className="project-foot">
+            <div className="tag-row">
+              {project.tech.map((t) => (
+                <span key={t} className="tag">
+                  {t}
+                </span>
+              ))}
+            </div>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-link"
+              >
+                Code
+                <ArrowIcon />
+              </a>
+            )}
+          </div>
         </div>
-      </div>
-    </article>
+      </BorderGlow>
+    </div>
   );
 }
 
@@ -175,7 +190,7 @@ export default function Projects() {
 
   return (
     <>
-      <Reveal className="projects-grid" stagger>
+      <Reveal className="card-grid" stagger>
         {projects.map((project, index) => (
           <ProjectCard
             key={project.title}

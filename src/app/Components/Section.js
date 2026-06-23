@@ -1,14 +1,21 @@
-export default function Section({ id, index, label, children }) {
+export default function Section({ id, index, label, description, tone = "base", children }) {
   return (
-    <section id={id} className="section" aria-label={label}>
+    <section
+      id={id}
+      className={`section${tone === "alt" ? " section--alt" : ""}`}
+      aria-label={label}
+    >
       <div className="container">
-        <div className="section-inner">
-          <div className="section-rail">
-            <span className="section-index">{index}</span>
-            <span className="section-label">{label}</span>
+        <header className="section-head">
+          <div className="section-headline">
+            <span className="section-index" aria-hidden="true">
+              {index}
+            </span>
+            <h2 className="section-title">{label}</h2>
           </div>
-          <div className="section-body">{children}</div>
-        </div>
+          {description && <p className="section-desc">{description}</p>}
+        </header>
+        <div className="section-body">{children}</div>
       </div>
     </section>
   );

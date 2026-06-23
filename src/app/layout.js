@@ -1,23 +1,40 @@
-import { Inter, JetBrains_Mono, Bricolage_Grotesque } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
+const geist = Geist({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-geist',
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ['latin'],
-  variable: '--font-jbmono',
+  variable: '--font-geist-mono',
   display: 'swap',
 });
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-bricolage',
-  display: 'swap',
+import {
+  IBM_Plex_Sans,
+  IBM_Plex_Serif,
+  IBM_Plex_Mono,
+} from "next/font/google";
+
+const ibmSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-ibm-sans",
+});
+
+const ibmSerif = IBM_Plex_Serif({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-serif",
+});
+
+const ibmMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-ibm-mono",
 });
 
 export const metadata = {
@@ -29,11 +46,12 @@ export const metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1.0,
+  themeColor: '#131316',
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${bricolage.variable}`}>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${ibmSans.variable} ${ibmSerif.variable} ${ibmMono.variable}`}>
       <body>{children}</body>
     </html>
   );

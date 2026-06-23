@@ -65,7 +65,7 @@ export default function Tools() {
           <div className="skill-pills">
             {group.items.map((item) => (
               <span key={item.name} className="skill-pill">
-                <Image src={item.logo} alt="" width={18} height={18} aria-hidden="true" />
+                <Image src={item.logo} alt="" width={24} height={24} aria-hidden="true" />
                 {item.name}
               </span>
             ))}

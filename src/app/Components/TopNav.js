@@ -1,13 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Briefcase, FolderGit2, GraduationCap, Layers, Mail, FileText } from "lucide-react";
 
 const navLinks = [
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Writing", href: "#writing" },
-  { label: "Contact", href: "#contact" },
+  { label: "Experience", href: "#experience", Icon: Briefcase },
+  { label: "Projects", href: "#projects", Icon: FolderGit2 },
+  { label: "Education", href: "#education", Icon: GraduationCap },
+  { label: "Skills", href: "#skills", Icon: Layers },
+  { label: "Contact", href: "#contact", Icon: Mail },
 ];
+
+const RESUME_HREF = "/Aneesh_Bargaje_Resume.pdf";
 
 export default function TopNav() {
   const [active, setActive] = useState("");
@@ -42,25 +46,39 @@ export default function TopNav() {
         <a href="#home" className="topnav-mark">
           Aneesh Bargaje
         </a>
-        <nav aria-label="Sections">
-          <ul className="topnav-links">
-            {navLinks.map((link) => {
-              const id = link.href.slice(1);
-              const isActive = active === id;
-              return (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className={`topnav-link${isActive ? " active" : ""}`}
-                    aria-current={isActive ? "true" : undefined}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <div className="topnav-right">
+          <nav aria-label="Sections">
+            <ul className="topnav-links">
+              {navLinks.map(({ label, href, Icon }) => {
+                const id = href.slice(1);
+                const isActive = active === id;
+                return (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      className={`topnav-link${isActive ? " active" : ""}`}
+                      aria-current={isActive ? "true" : undefined}
+                    >
+                      <span className="topnav-link-icon">
+                        <Icon size={17} strokeWidth={1.75} aria-hidden="true" />
+                      </span>
+                      <span className="topnav-link-label">{label}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+          <a
+            href={RESUME_HREF}
+            className="topnav-resume"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FileText size={15} strokeWidth={1.75} aria-hidden="true" />
+            Résumé
+          </a>
+        </div>
       </div>
     </header>
   );
