@@ -5,7 +5,7 @@ export const totals = { hours: "69.4", flights: 52 };
 
 // label: which side of the dot the identifier sits on
 export const airports = [
-  { id: "KLAF", name: "Purdue University", lat: 40.4123, lon: -86.9369, label: "left" },
+  { id: "KLAF", cover: "1737-2877941d", album: "Around Purdue", name: "Purdue University", lat: 40.4123, lon: -86.9369, label: "left" },
   { id: "KMTO", name: "Mattoon, IL", lat: 39.4779, lon: -88.2792, label: "up" },
   { id: "1H8", name: "Casey, IL", lat: 39.3025, lon: -88.0041, label: "right" },
   { id: "1H2", name: "Effingham, IL", lat: 39.0704, lon: -88.5335, label: "below" },
@@ -25,18 +25,40 @@ export const airports = [
   { id: "KDKB", name: "DeKalb, IL", lat: 41.9339, lon: -88.7057, label: "up" },
 ];
 
-// Photos for a route go in public/routes/<id>/ and show up when it is clicked.
+// Photos for a flight go in public/routes/<id>/<date>/ and show up when the
+// route is clicked. "cover" is the start of the file name used on its album.
+// `npm run photos` can sort them there for you.
 export const routes = [
-  { id: "solo-cross-country", title: "Solo cross country", featured: true, path: ["KLAF", "KBMG", "KFWA", "KLAF"], flights: [["Apr 30, 2026", "3.5 hours solo"]] },
-  { id: "laf-huf", path: ["KLAF", "KHUF"], flights: [["Apr 5, 2026", "Dual cross country"], ["Apr 26, 2026", "Solo"]] },
-  { id: "laf-bak", path: ["KLAF", "KBAK"], flights: [["Apr 12, 2026", "Dual cross country"]] },
-  { id: "laf-ikk", path: ["KLAF", "KIKK"], flights: [["Apr 14, 2026", "Dual cross country, instruments on the way back"]] },
-  { id: "night-cross-country", title: "Night cross country", path: ["KLAF", "KOXI", "KGGP", "KLAF"], flights: [["Apr 20, 2026", "2.1 hours at night"]] },
-  { id: "laf-mcx", path: ["KLAF", "KMCX"], flights: [["Mar 25, 2026", "Pattern work"], ["Mar 28, 2026", "Solo at Monticello"], ["Mar 29, 2026", "Dual"]] },
-  { id: "laf-fkr", path: ["KLAF", "KFKR"], flights: [["Mar 13, 2026", "Dual"], ["Apr 29, 2026", "Dual"]] },
-  { id: "laf-cfj", path: ["KLAF", "KCFJ"], flights: [["May 3, 2026", "Checkride prep"]] },
-  { id: "laf-dnv", path: ["KLAF", "KDNV"], flights: [["May 20, 2026", "Checkride prep"]] },
-  { id: "dpa-dkb", path: ["KDPA", "KDKB"], flights: [["Jul 11, 2026", "Proficiency flight"], ["Aug 20, 2026", "Pattern and maneuvers"]] },
-  { id: "mto-1h2", path: ["KMTO", "1H2"], flights: [["Jun 24, 2024", "Out and back"], ["Jun 26, 2024", "Two flights"], ["Jun 27, 2024", "Pattern work"]] },
-  { id: "mto-1h8", path: ["KMTO", "1H8"], flights: [["Jun 23, 2024", "Dual"]] },
+  { id: "solo-cross-country", cover: "1324-824fa45c", title: "Solo cross country", featured: true, path: ["KLAF", "KBMG", "KFWA", "KLAF"], flights: [{ date: "2026-04-30", note: "3.5 hours solo" }] },
+  { id: "laf-huf", path: ["KLAF", "KHUF"], flights: [{ date: "2026-04-05", note: "Dual cross country" }, { date: "2026-04-26", note: "Solo" }] },
+  { id: "laf-bak", cover: "1130-f25d0b75", path: ["KLAF", "KBAK"], flights: [{ date: "2026-04-12", note: "Dual cross country" }] },
+  { id: "laf-ikk", path: ["KLAF", "KIKK"], flights: [{ date: "2026-04-14", note: "Dual cross country, instruments on the way back" }] },
+  { id: "night-cross-country", cover: "2128-255a3d0d", title: "Night cross country", path: ["KLAF", "KOXI", "KGGP", "KLAF"], flights: [{ date: "2026-04-20", note: "2.1 hours at night", night: true }] },
+  { id: "laf-mcx", cover: "1644-161a2a72", path: ["KLAF", "KMCX"], flights: [{ date: "2026-03-25", note: "Pattern work" }, { date: "2026-03-28", note: "Solo at Monticello" }, { date: "2026-03-29", note: "Dual" }] },
+  { id: "laf-fkr", path: ["KLAF", "KFKR"], flights: [{ date: "2026-03-13", note: "Dual" }, { date: "2026-04-29", note: "Dual" }] },
+  { id: "laf-cfj", path: ["KLAF", "KCFJ"], flights: [{ date: "2026-05-03", note: "Checkride prep" }] },
+  { id: "laf-dnv", path: ["KLAF", "KDNV"], flights: [{ date: "2026-05-20", note: "Checkride prep" }] },
+  { id: "dpa-dkb", cover: "1123-d24d0410", path: ["KDPA", "KDKB"], flights: [{ date: "2026-07-11", note: "Proficiency flight" }, { date: "2026-08-20", note: "Pattern and maneuvers" }] },
+  { id: "mto-1h2", path: ["KMTO", "1H2"], flights: [{ date: "2024-06-24", note: "Out and back" }, { date: "2024-06-26", note: "Two flights" }, { date: "2024-06-27", note: "Pattern work" }] },
+  { id: "mto-1h8", path: ["KMTO", "1H8"], flights: [{ date: "2024-06-23", note: "Dual" }] },
 ];
+
+// Flights that stayed at one airport. Photos go in public/airports/<id>/<date>/.
+// Only the ones with a note or photos are listed on the site.
+export const local = {
+  "06C": [
+    { date: "2025-06-25" }, { date: "2025-06-28" }, { date: "2025-06-29" }, { date: "2025-06-30" },
+    { date: "2025-07-02", note: "First solo" },
+  ],
+  "1H8": [{ date: "2024-06-28" }],
+  KLAF: [
+    { date: "2026-02-25" }, { date: "2026-02-28" }, { date: "2026-03-01" }, { date: "2026-03-06" },
+    { date: "2026-03-23" }, { date: "2026-03-26" }, { date: "2026-04-06" },
+    { date: "2026-04-08", night: true, note: "Night landings" },
+    { date: "2026-04-09" }, { date: "2026-04-16" },
+    { date: "2026-04-19", note: "Towered solo" },
+    { date: "2026-04-20" }, { date: "2026-04-22" }, { date: "2026-05-01" }, { date: "2026-05-02" },
+    { date: "2026-05-07" }, { date: "2026-05-20" }, { date: "2026-05-21" },
+    { date: "2026-05-22", note: "Private pilot checkride" },
+  ],
+};

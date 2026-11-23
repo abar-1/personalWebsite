@@ -18,6 +18,46 @@ const PORT_LABEL = {
 };
 const LEG_MS = 950; // keep in step with --fly in globals.css
 
+// Distance from a point to a line segment.
+function toSegment([px, py], [ax, ay], [bx, by]) {
+  const [dx, dy] = [bx - ax, by - ay];
+  const len = dx * dx + dy * dy;
+  const t = len ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / len)) : 0;
+  return Math.hypot(px - ax - t * dx, py - ay - t * dy);
+}
+
+function Card({ title, line, item, routes = [], onRoute, onClose }) {
+  const loose = item.photos ?? [];
+  return (
+    <section className="flight" aria-label={title}>
+      <header>
+        <div>
+          <h3>{title}</h3>
+          <p className="muted">{line}</p>
+        </div>
+        <button type="button" className="flight__close" onClick={onClose}>Close</button>
+      </header>
+      {item.flights.map((f) => (
+        <div key={f.date} className="flight__entry">
+          <p><span>{f.day}</span>{f.note && <span className="muted">{f.note}</span>}</p>
+          {f.photos.length > 0 && <Gallery photos={f.photos} title={title} />}
+        </div>
+      ))}
+      {loose.length > 0 && <Gallery photos={loose} title={title} />}
+      {routes.length > 0 && (
+        <>
+        <p className="muted">Routes from here</p>
+        <ul className="chips flight__routes">
+          {routes.map((r) => (
+            <li key={r.id}><button type="button" onClick={() => onRoute(r.id)}>{r.title.replace(`${title.split(",")[0]} to `, "")}</button></li>
+          ))}
+        </ul>
+        </>
+      )}
+    </section>
+  );
+}
+
 export default function Chart({ chart, home }) {
   const { stops, airports, routes, perDegree } = chart;
   const root = useRef(null);
@@ -28,6 +68,7 @@ export default function Chart({ chart, home }) {
   const [animate, setAnimate] = useState(false);
   const [mode, setMode] = useState("places");
   const [pick, setPick] = useState(null); // { kind: "stop" | "airport" | "route", id }
+  const [hover, setHover] = useState(null);
   const [plane, setPlane] = useState({ x: homeStop.x, y: homeStop.y, turn: -60 });
 
   useEffect(() => {
@@ -65,6 +106,9 @@ export default function Chart({ chart, home }) {
       setMode("places");
       setPick({ kind: "stop", id });
       fly([[stop.x, stop.y]]);
+    } else if (airport && !airport.flights.length && routes.filter((r) => r.path.includes(id)).length === 1) {
+      // An airport on a single route has nothing of its own to show: open the route.
+      go(routes.find((r) => r.path.includes(id)).id);
     } else if (airport) {
       setMode("flights");
       setPick({ kind: "airport", id });
@@ -136,7 +180,7 @@ export default function Chart({ chart, home }) {
   let camera;
   if (spot) camera = { s: closeUp, x: box.w / 2 - spot.x * closeUp, y: box.h / 2 - spot.y * closeUp };
   else if (route)
-    camera = frame(route.points, small ? tight : { top: 110, right: 80, bottom: Math.min(320, box.h * 0.42), left: 80 }, closeUp);
+    camera = frame(route.points, small ? tight : { top: 110, right: 80, bottom: Math.min(370, box.h * 0.42 + 40), left: 80 }, closeUp);
   else if (mode === "flights")
     camera = frame(airports.map(xy), small ? tight : { top: 100, right: 60, bottom: 80, left: 60 }, closeUp);
   else camera = frame(stops.map(xy), small ? tight : { top: 150, right: 170, bottom: 170, left: 110 }, closeUp);
@@ -154,11 +198,41 @@ export default function Chart({ chart, home }) {
       go(id);
     },
   });
+  // Routes cross and share airports, so a click opens whichever is truly nearest
+  // rather than whichever happens to be drawn on top.
+  const nearest = (e) => {
+    const area = root.current.getBoundingClientRect();
+    const at = [(e.clientX - area.left - camera.x) / camera.s, (e.clientY - area.top - camera.y) / camera.s];
+    const port = airports
+      .map((a) => ({ id: a.id, d: Math.hypot(at[0] - a.x, at[1] - a.y) * camera.s }))
+      .sort((a, b) => a.d - b.d)[0];
+    if (port.d <= 8) return port.id;
+    const line = routes
+      .map((r) => ({
+        id: r.id,
+        d: Math.min(...r.points.slice(1).map((q, i) => toSegment(at, r.points[i], q))) * camera.s,
+        photos: r.photos.length + r.flights.reduce((n, f) => n + f.photos.length, 0),
+      }))
+      // Where two lines overlap, prefer the one with more photos.
+      .sort((a, b) => (Math.abs(a.d - b.d) < 1.5 ? b.photos - a.photos : a.d - b.d))[0];
+    if (line.d <= 14) return line.id;
+    return port.d <= 18 ? port.id : null;
+  };
+  const onChartClick = (e) => {
+    if (mode === "flights") {
+      const id = nearest(e);
+      if (id) return go(id);
+    } else if (e.target.closest('[role="button"]')) return;
+    if (pick) overview(mode);
+  };
+  const onChartMove = (e) => {
+    if (e.pointerType === "mouse") setHover(mode === "flights" ? nearest(e) : null);
+  };
   const on = (kind, id) => pick?.kind === kind && pick.id === id;
 
   return (
     <aside ref={root} id="chart" className="chart" data-mode={mode} data-ready={box.ready} data-animate={animate} aria-label="Chart of places and flights">
-      <svg onClick={(e) => pick && !e.target.closest('[role="button"]') && overview(mode)}>
+      <svg onClick={onChartClick} onPointerMove={onChartMove} onPointerLeave={() => setHover(null)} style={{ cursor: hover ? "pointer" : undefined }}>
         <g className="camera" style={{ transform: `translate(${camera.x}px, ${camera.y}px) scale(${camera.s})` }}>
           <path className="chart__land" d={chart.land} />
           <path className="chart__counties" d={chart.counties} />
@@ -188,8 +262,7 @@ export default function Chart({ chart, home }) {
               let angle = a && b ? (Math.atan2(b[1] - a[1], b[0] - a[0]) * 180) / Math.PI : 0;
               if (Math.abs(angle) > 90) angle += 180;
               return (
-                <g key={r.id} className="route" data-featured={Boolean(r.featured)} aria-label={`Flight: ${r.title}, ${r.path.join(" ")}`} aria-pressed={on("route", r.id)} {...press(r.id)} tabIndex={mode === "flights" ? 0 : -1}>
-                  <path className="route__hit" d={d} />
+                <g key={r.id} className="route" data-featured={Boolean(r.featured)} aria-label={`Flight: ${r.title}, ${r.path.join(" ")}`} data-hover={hover === r.id} aria-pressed={on("route", r.id)} {...press(r.id)} onClick={undefined} tabIndex={mode === "flights" ? 0 : -1}>
                   <path className="route__line" d={d} />
                   {r.featured && (
                     <g transform={`translate(${(a[0] + b[0]) / 2} ${(a[1] + b[1]) / 2}) rotate(${angle})`}>
@@ -206,7 +279,7 @@ export default function Chart({ chart, home }) {
               const l = PORT_LABEL[a.label];
               return (
                 <g key={a.id} transform={`translate(${a.x} ${a.y})`}>
-                  <g className="port keep" style={keep} aria-label={`${a.id}, ${a.name}`} aria-pressed={on("airport", a.id)} {...press(a.id)} tabIndex={mode === "flights" ? 0 : -1}>
+                  <g className="port keep" style={keep} aria-label={`${a.id}, ${a.name}`} data-hover={hover === a.id} aria-pressed={on("airport", a.id)} {...press(a.id)} onClick={undefined} tabIndex={mode === "flights" ? 0 : -1}>
                     <title>{a.name}</title>
                     <circle r="12" fill="transparent" />
                     <circle className="port__dot" r="4.5" />
@@ -256,28 +329,10 @@ export default function Chart({ chart, home }) {
       <p className="chart__note">Not for navigation</p>
 
       {route && (
-        <section className="flight" key={route.id} aria-label={route.title}>
-          <header>
-            <div>
-              <h3>{route.title}</h3>
-              <p className="muted">{route.path.join(" – ")}</p>
-            </div>
-            <button type="button" className="flight__close" onClick={() => overview("flights")}>Close</button>
-          </header>
-          <ul className="flight__dates">
-            {route.flights.map(([date, note], i) => (
-              <li key={i}><span>{date}</span><span className="muted">{note}</span></li>
-            ))}
-          </ul>
-          {route.photos.length > 0 ? (
-            <Gallery photos={route.photos} title={route.title} />
-          ) : (
-            <p className="muted">Photos from this flight are on the way.</p>
-          )}
-        </section>
+        <Card key={route.id} title={route.title} line={route.path.join(" – ")} item={route} onClose={() => overview("flights")} />
       )}
-      {spot && pick.kind === "airport" && (
-        <p className="chart__tag"><b>{spot.id}</b> {spot.name}</p>
+      {pick?.kind === "airport" && spot && (
+        <Card key={spot.id} title={spot.name} line={spot.id} item={spot} routes={routes.filter((r) => r.path.includes(spot.id))} onRoute={go} onClose={() => overview("flights")} />
       )}
     </aside>
   );

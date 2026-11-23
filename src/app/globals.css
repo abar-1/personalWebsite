@@ -85,12 +85,14 @@ section[id] { scroll-margin-top: 32px; }
 .layer { opacity: 0; visibility: hidden; transition: opacity 200ms ease, visibility 0s 200ms; }
 .layer[data-show="true"] { opacity: 1; visibility: visible; transition: opacity 300ms ease 150ms, visibility 0s; }
 .route { cursor: pointer; outline: none; transition: opacity 200ms ease; }
-.route__hit { fill: none; stroke: transparent; stroke-width: 18; pointer-events: stroke; }
 .route__line { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linejoin: round; opacity: 0.85; transition: opacity 200ms ease, stroke-width 160ms ease, stroke 160ms ease; }
 .route[data-featured="true"] .route__line { stroke: var(--magenta); }
 .chart[data-mode="flights"] .route[data-featured="true"] .route__line { stroke-width: 2.6; }
 .route__label { font-size: 15px; font-weight: 700; fill: var(--magenta); paint-order: stroke; stroke: var(--land); stroke-width: 5px; }
 .chart .route:is(:focus-visible, [aria-pressed="true"]) .route__line { stroke: var(--magenta); stroke-width: 3.5; opacity: 1; }
+.chart .route[data-hover="true"] .route__line { opacity: 1; stroke-width: 3; }
+.routes-layer[data-picked="true"] .route[data-hover="true"] { opacity: 1 !important; }
+.port[data-hover="true"] .port__dot { fill: var(--accent); }
 .routes-layer[data-picked="true"] .route[aria-pressed="false"] { opacity: 0.22; }
 .port, .stop { cursor: pointer; outline: none; }
 .port__dot { fill: var(--ground); stroke: var(--accent); stroke-width: 2; transition: fill 160ms ease; }
@@ -117,18 +119,33 @@ section[id] { scroll-margin-top: 32px; }
 .chart__reset[data-show="true"] { opacity: 1; visibility: visible; transition: opacity 200ms ease, transform 140ms var(--ease-out), border-color 160ms ease, visibility 0s; }
 .chart__reset:active { transform: scale(0.97); }
 .chart__note { position: absolute; right: 20px; bottom: 14px; font-size: 0.8125rem; color: var(--accent); pointer-events: none; }
-.chart__tag { position: absolute; left: 20px; bottom: 20px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 22px; background: var(--ground); }
 .flight { position: absolute; z-index: 1; inset: auto 20px 20px; max-height: 42%; overflow-y: auto; overscroll-behavior: contain; display: grid; gap: 10px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--ground); transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
 @starting-style { .flight { opacity: 0; transform: translateY(10px); } }
 .flight header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
 .flight h3 { font: 700 1.5rem/1.1 var(--display), serif; }
 .flight__close { flex: none; min-height: 44px; padding: 0 16px; border: 1px solid var(--line); border-radius: 22px; background: none; font-size: 0.9375rem; cursor: pointer; transition: transform 140ms var(--ease-out), border-color 160ms ease; }
-.flight__dates li { display: flex; flex-wrap: wrap; gap: 0 12px; font-size: 0.9375rem; }
-.flight .thumbs li { flex-basis: 140px; }
+.flight > * { min-width: 0; }
+.flight { grid-template-columns: minmax(0, 1fr); }
+.flight__entry p { display: flex; flex-wrap: wrap; gap: 0 12px; font-size: 0.9375rem; }
+.flight .thumbs li { flex-basis: 112px; }
+.flight .thumbs button { aspect-ratio: 3 / 4; }
+.flight .thumbs img { object-position: center; }
+.albums { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.albums li { flex: 1 1 210px; height: 220px; }
+.albums li[data-featured="true"] { flex-basis: 100%; height: clamp(260px, 26vw, 360px); }
+.album { position: relative; display: block; width: 100%; height: 100%; padding: 0; overflow: hidden; border: 0; border-radius: 12px; background: var(--raise); color: #fff; text-align: left; cursor: pointer; transition: transform 140ms var(--ease-out); }
+.album:active { transform: scale(0.985); }
+.album img { object-fit: cover; transition: transform 400ms var(--ease-out); }
+.album::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgb(8 14 22 / 82%)); }
+.album__text { position: absolute; z-index: 1; inset: auto 16px 14px; display: grid; line-height: 1.3; overflow-wrap: anywhere; }
+.album__text b { font: 700 1.375rem/1.15 var(--display), serif; }
+.album__text span { font-size: 0.9375rem; }
+.flight__routes { margin-top: 0; }
+.flight__routes button { font-size: 0.9375rem; padding: 0 14px; }
+.flying__more { margin-top: 28px; }
 .flying__lead { max-width: 64ch; }
 .flying__routes { margin-bottom: 24px; }
 .flying__routes button { font-size: 0.9375rem; }
-.flying__routes button[data-featured="true"] { border-color: var(--magenta); color: var(--magenta); }
 
 .links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
 .round { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--ink); color: var(--ground); touch-action: manipulation; transition: transform 140ms var(--ease-out), background-color 160ms ease; }
@@ -215,8 +232,6 @@ details[open]::details-content { height: auto; opacity: 1; transition-duration: 
 @keyframes drift { to { transform: rotate(1turn); } }
 @keyframes bars { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
 
-.photos-soon { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.photos-soon li { aspect-ratio: 4 / 3; border-radius: 8px; background: var(--raise); }
 .soon p { margin-bottom: 12px; }
 .soon .track i { display: block; border-radius: 4px; background: var(--raise); }
 .soon .track > i { flex: none; width: 40px; height: 40px; }
@@ -264,10 +279,9 @@ details[open]::details-content { height: auto; opacity: 1; transition-duration: 
   .artist:active { transform: scale(0.98); }
   .round:hover { background: var(--magenta); }
   .place:hover { text-decoration-thickness: 2px; }
+  .album:hover img { transform: scale(1.03); }
   .thumbs button:hover img { transform: scale(1.03); }
   .flight__close:hover, .chart__reset:hover { border-color: var(--ink); }
-  .chart .route:hover .route__line { opacity: 1; stroke-width: 3; }
-  .port:hover .port__dot { fill: var(--accent); }
   .roles li[data-at]:hover { background: var(--raise); }
   .stop:hover .stop__dot { fill: var(--magenta); }
   summary:hover, a.track:hover { color: var(--accent); }
@@ -280,7 +294,6 @@ details[open]::details-content { height: auto; opacity: 1; transition-duration: 
   .chart__modes button { padding: 0 13px; }
   .chart__reset { top: auto; bottom: 10px; right: 10px; }
   .chart__note { display: none; }
-  .chart__tag { left: 10px; top: 10px; bottom: auto; padding: 6px 12px; }
   .flight { position: fixed; z-index: 5; inset: auto 12px max(12px, env(safe-area-inset-bottom)); max-height: 46svh; box-shadow: 0 8px 30px rgb(0 0 0 / 20%); }
 }
 @media (max-width: 519px) {
@@ -294,7 +307,7 @@ details[open]::details-content { height: auto; opacity: 1; transition-duration: 
 @media (prefers-reduced-motion: reduce) {
   .content > * { animation-name: fade; animation-duration: 200ms; }
   .plane, .plane__turn, .chart[data-animate] .camera, .chart[data-animate] .keep { transition: none; }
-  .thumbs button:hover img, .round:active { transform: none; }
+  .thumbs button:hover img, .album:hover img, .album:active, .round:active { transform: none; }
   .chips button, summary svg, .pin::before { transition-property: color, background-color, border-color; }
   .chips button:active { transform: none; }
   details::details-content, .np, .np__line i { transition: none; }

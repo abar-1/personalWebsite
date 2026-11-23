@@ -5,18 +5,21 @@ import Gallery from "./Gallery";
 import Icon from "./Icons";
 import Music from "./Music";
 import { buildMap } from "@/lib/map";
-import { buildChart } from "@/lib/chart";
+import { albums, buildChart } from "@/lib/chart";
 import avatar from "@/app/assets/avatar.jpg";
 
 const external = { target: "_blank", rel: "noopener noreferrer" };
 
 export default function Portfolio({ data }) {
   const { person, log, stops, homeBase, about, roles, projects, resume, flying, places, tracks, artists, live } = data;
+  const chart = buildChart({ stops, airports: log.airports, routes: log.routes, local: log.local });
+  const shown = albums(chart);
+  const others = chart.routes.filter((r) => !shown.some((a) => a.id === r.id));
   const map = places.length ? buildMap(places) : null;
 
   return (
     <main className="page">
-      <Chart chart={buildChart({ stops, airports: log.airports, routes: log.routes })} home={homeBase} />
+      <Chart chart={chart} home={homeBase} />
       <div className="content">
       <header className="top">
         <Image className="avatar" src={avatar} alt="" width={144} height={144} priority />
@@ -35,7 +38,7 @@ export default function Portfolio({ data }) {
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
             <path d="M9 3v12M4 10l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span>More about me below: <a href="#music">my music</a> and <a href="#flying">my flying photos</a></span>
+          <span>More about me below: <a href="#music">what I listen to</a> and <a href="#flying">my flying photos</a></span>
         </p>
       </header>
 
@@ -120,23 +123,37 @@ export default function Portfolio({ data }) {
       <section id="flying">
         <h2>Flying</h2>
         <p className="flying__lead">
-          {log.totals.hours} hours, {log.totals.flights} flights and {log.airports.length} airports so far. Pick a route to fly it on the map.
+          {log.totals.hours} hours, {log.totals.flights} flights and {log.airports.length} airports so far.
+          {shown.length > 0 && " Open an album to fly that route on the map."}
         </p>
-        <ul className="chips flying__routes">
-          {log.routes.map((r) => (
-            <li key={r.id}>
-              <button type="button" data-at={r.id} data-featured={Boolean(r.featured)}>{r.title ?? r.path.join(" – ")}</button>
-            </li>
-          ))}
-        </ul>
-        {flying.length > 0 ? (
-          <Gallery photos={flying} title="Flying" />
-        ) : (
-          <div className="soon">
-            <p className="muted">Photos from the cockpit are on the way.</p>
-            <ul className="photos-soon" aria-hidden="true"><li /><li /><li /></ul>
-          </div>
+        {shown.length > 0 && (
+          <ul className="albums">
+            {shown.map((a) => (
+              <li key={a.id} data-featured={Boolean(a.featured)}>
+                <button type="button" className="album" data-at={a.id}>
+                  <Image src={a.cover.src} alt="" fill sizes={a.featured ? "(max-width: 899px) 100vw, 900px" : "(max-width: 519px) 100vw, 450px"} />
+                  <span className="album__text">
+                    <b>{a.title}</b>
+                    <span>{[a.when, `${a.count} ${a.count === 1 ? "photo" : "photos"}`].filter(Boolean).join(", ")}</span>
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
         )}
+        {others.length > 0 && (
+          <>
+            <h3 className="flying__more">More routes</h3>
+            <ul className="chips flying__routes">
+              {others.map((r) => (
+                <li key={r.id}>
+                  <button type="button" data-at={r.id}>{r.path.join(" – ")}</button>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+        {flying.length > 0 && <Gallery photos={flying} title="Flying" />}
       </section>
 
       {map && (
