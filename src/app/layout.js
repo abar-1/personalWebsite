@@ -1,58 +1,40 @@
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
+import { Lora, Neuton } from "next/font/google";
+import "./globals.css";
 
-const geist = Geist({
-  subsets: ['latin'],
-  variable: '--font-geist',
-  display: 'swap',
-});
+const body = Lora({ subsets: ["latin", "latin-ext"], variable: "--body", display: "swap" });
+const display = Neuton({ subsets: ["latin", "latin-ext"], weight: ["700"], variable: "--display", display: "swap" });
 
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-geist-mono',
-  display: 'swap',
-});
+const site =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
+  "http://localhost:3000";
 
-import {
-  IBM_Plex_Sans,
-  IBM_Plex_Serif,
-  IBM_Plex_Mono,
-} from "next/font/google";
-
-const ibmSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-ibm-sans",
-});
-
-const ibmSerif = IBM_Plex_Serif({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-ibm-serif",
-});
-
-const ibmMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-ibm-mono",
-});
+const title = "Aneesh Bargaje, software engineer and data scientist";
+const description =
+  "Computer science and data science at Purdue with a minor in finance. Software engineer, data scientist and private pilot.";
 
 export const metadata = {
-  title: 'Aneesh Bargaje — Data Science + CS @ Purdue',
-  description:
-    'Aneesh Bargaje — Data Science + Computer Science at Purdue. Building ML systems and the software around them. Seeking SWE, AI/ML, and Data Science internships.',
+  metadataBase: new URL(site),
+  title,
+  description,
+  openGraph: { title, description, type: "website" },
+  twitter: { card: "summary_large_image" },
 };
 
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1.0,
-  themeColor: '#131316',
+export const viewport = { width: "device-width", initialScale: 1,
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f0f1ea" },
+    { media: "(prefers-color-scheme: dark)", color: "#121a23" },
+  ],
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${ibmSans.variable} ${ibmSerif.variable} ${ibmMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${body.variable} ${display.variable}`}>
+      <body>
+        {children}
+      </body>
     </html>
   );
 }
