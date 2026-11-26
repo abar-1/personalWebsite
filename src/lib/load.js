@@ -3,7 +3,7 @@ import * as site from "@/data/site";
 import * as log from "@/data/flights";
 import { places } from "@/data/travel";
 import { picks } from "@/data/music";
-import { hasPublicFile, photosIn } from "./photos";
+import { photosIn } from "./photos";
 import { getTop, spotifyConfigured } from "./spotify";
 
 export async function loadData() {
@@ -13,7 +13,6 @@ export async function loadData() {
     log,
     places,
     projects: site.projects.map((p) => ({ ...p, pictures: photosIn(p.photos) })),
-    resume: hasPublicFile(site.person.resume) ? `/${site.person.resume}` : null,
     flying: photosIn("flying"),
     tracks: top?.tracks ?? picks,
     artists: top?.artists ?? [],

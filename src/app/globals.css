@@ -169,6 +169,35 @@ section[id] { scroll-margin-top: 32px; }
 .roles li[data-at]:active { background: var(--raise); }
 .roles { display: grid; gap: 4px; }
 .roles li { margin-inline: -16px; padding: 10px 16px; border-radius: 8px; transition: background-color 160ms ease; }
+/* Experience timeline: the dots echo the waypoint markers on the chart */
+.roles--timeline li:not(:last-child)::after { content: ""; position: absolute; left: 21.25px; top: 31px; bottom: -23px; width: 1.5px; background: var(--line); }
+.roles--timeline li { padding-left: 46px; }
+.roles--timeline li::before { content: ""; position: absolute; left: 16px; top: 19px; width: 12px; height: 12px; border: 2.5px solid var(--magenta); border-radius: 50%; background: var(--ground); transition: background-color 160ms ease; }
+.roles--timeline li[data-now]::before { background: var(--magenta); }
+.roles--timeline li[data-now] .row > h3::after { content: "Now"; display: inline-block; margin-left: 10px; padding: 1px 8px; border-radius: 10px; background: color-mix(in srgb, var(--magenta) 14%, transparent); color: var(--magenta); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; vertical-align: 2px; }
+.role__title { color: var(--muted); }
+.role__body { margin-top: 2px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tags li { margin: 0; padding: 2px 10px; border: 1px solid var(--line); border-radius: 6px; font-size: 0.8125rem; color: var(--muted); }
+.tags li::before { content: none; }
+
+/* Contact */
+.contact { padding-top: 40px; border-top: 1px solid var(--line); }
+.contact__lead { max-width: 52ch; }
+.contact__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.copy, .contact__link { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; max-width: 100%; padding: 0 20px; border-radius: 26px; touch-action: manipulation; transition: transform 160ms var(--ease-out), background-color 160ms ease, border-color 160ms ease; }
+.copy:active, .contact__link:active { transform: scale(0.97); }
+.copy { border: 0; background: var(--ink); color: var(--ground); cursor: pointer; }
+.copy__email { font-weight: 600; overflow-wrap: anywhere; }
+.copy__state { display: grid; padding-left: 12px; border-left: 1px solid color-mix(in srgb, var(--ground) 30%, transparent); font-size: 0.875rem; }
+.copy__label { grid-area: 1 / 1; transition: opacity 200ms ease, filter 200ms ease, transform 200ms var(--ease-out); }
+.copy__label + .copy__label, .copy[data-copied="true"] .copy__label:first-child { opacity: 0; filter: blur(2px); transform: translateY(4px); }
+.copy[data-copied="true"] .copy__label + .copy__label { opacity: 1; filter: none; transform: none; }
+.contact__link { border: 1px solid var(--line); background: var(--raise); }
+.contact__link svg { width: 18px; height: 18px; }
+.foot { margin-top: 48px; font-size: 0.875rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
 .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
 .row .muted { flex: none; font-size: 1rem; }
 
@@ -183,6 +212,18 @@ details::details-content { height: 0; overflow: clip; opacity: 0; transition: he
 details[open]::details-content { height: auto; opacity: 1; transition-duration: 220ms; }
 .projects__body { display: grid; gap: 8px; justify-items: start; padding-bottom: 20px; }
 .link { padding-block: 10px; font-weight: 400; color: var(--accent); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+
+/* Skills: logos sit on a light tile in both themes so dark marks stay readable */
+.skills__main { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 120px), 1fr)); gap: 10px; }
+.skill { display: flex; align-items: center; gap: 10px; min-width: 0; overflow-wrap: anywhere; }
+.skill--main { flex-direction: column; justify-content: center; gap: 12px; min-height: 128px; padding: 18px 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--raise); text-align: center; transition: transform 180ms var(--ease-out), border-color 160ms ease; }
+.skill__logo { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 7px; background: #f7f8f3; box-shadow: inset 0 0 0 1px rgb(26 38 51 / 10%); }
+.skill__logo img { display: block; width: 20px; height: 20px; object-fit: contain; }
+.skill--main .skill__logo { width: 56px; height: 56px; border-radius: 14px; }
+.skill--main .skill__logo img { width: 36px; height: 36px; }
+.skills__groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 24px 32px; margin-top: 28px; }
+.skills__groups h3 { margin-bottom: 10px; font-size: 0.9375rem; font-weight: 400; }
+.skills__list { display: grid; gap: 8px; font-size: 0.9375rem; }
 
 .tracks { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 4px 24px; }
 .track { display: flex; align-items: center; gap: 12px; min-height: 52px; transition: color 160ms ease; }
@@ -274,10 +315,12 @@ details[open]::details-content { height: auto; opacity: 1; transition-duration: 
 
 @media (hover: hover) and (pointer: fine) {
   .chips button:hover { border-color: var(--ink); }
-  .artist:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .artist:hover, .skill--main:hover { border-color: var(--ink); transform: translateY(-2px); }
   .artist:hover img { transform: scale(1.03); }
   .artist:active { transform: scale(0.98); }
-  .round:hover { background: var(--magenta); }
+  .round:hover, .copy:hover { background: var(--magenta); }
+  .contact__link:hover { border-color: var(--ink); }
+  .roles--timeline li[data-at]:hover::before { background: var(--magenta); }
   .place:hover { text-decoration-thickness: 2px; }
   .album:hover img { transform: scale(1.03); }
   .thumbs button:hover img { transform: scale(1.03); }
@@ -312,6 +355,7 @@ details[open]::details-content { height: auto; opacity: 1; transition-duration: 
   .chips button:active { transform: none; }
   details::details-content, .np, .np__line i { transition: none; }
   .np__record, .np__wash, .np__bars i { animation: none; }
-  .artist:hover, .artist:hover img, .artist:active, .np:active { transform: none; }
+  .artist:hover, .artist:hover img, .artist:active, .np:active, .skill--main:hover, .copy:active, .contact__link:active { transform: none; }
+  .copy__label { transition-property: opacity; transform: none !important; filter: none !important; }
 }
 @keyframes fade { from { opacity: 0; } }

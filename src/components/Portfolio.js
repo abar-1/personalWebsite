@@ -4,6 +4,7 @@ import TravelMap from "./TravelMap";
 import Gallery from "./Gallery";
 import Icon from "./Icons";
 import Music from "./Music";
+import CopyEmail from "./CopyEmail";
 import { buildMap } from "@/lib/map";
 import { albums, buildChart } from "@/lib/chart";
 import avatar from "@/app/assets/avatar.jpg";
@@ -11,7 +12,7 @@ import avatar from "@/app/assets/avatar.jpg";
 const external = { target: "_blank", rel: "noopener noreferrer" };
 
 export default function Portfolio({ data }) {
-  const { person, log, stops, homeBase, about, roles, projects, resume, flying, places, tracks, artists, live } = data;
+  const { person, log, stops, homeBase, about, roles, projects, skills, education, contact, flying, places, tracks, artists, live } = data;
   const chart = buildChart({ stops, airports: log.airports, routes: log.routes, local: log.local });
   const shown = albums(chart);
   const others = chart.routes.filter((r) => !shown.some((a) => a.id === r.id));
@@ -32,13 +33,12 @@ export default function Portfolio({ data }) {
             <a key={text} className="round" href={href} aria-label={text} title={text} {...external}><Icon name={text} /></a>
           ))}
           <a className="round" href={`mailto:${person.email}`} aria-label="Email" title="Email"><Icon name="Email" /></a>
-          {resume && <a className="round" href={resume} aria-label="Résumé" title="Résumé" {...external}><Icon name="Résumé" /></a>}
         </nav>
         <p className="more">
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
             <path d="M9 3v12M4 10l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span>More about me below: <a href="#music">what I listen to</a> and <a href="#flying">my flying photos</a></span>
+          <span>More about me below: <a href="#music">what I listen to</a>, <a href="#flying">my flying photos</a> and <a href="#contact">how to reach me</a></span>
         </p>
       </header>
 
@@ -62,15 +62,37 @@ export default function Portfolio({ data }) {
       {roles.length > 0 && (
         <section>
           <h2>Experience</h2>
-          <ul className="roles">
+          <ul className="roles roles--timeline">
             {roles.map((r, i) => (
-              <li key={i} data-at={r.at}>
+              <li key={i} data-at={r.at} data-now={/now/i.test(r.when) || undefined}>
                 <div className="row">
                   <h3>{r.at ? <button type="button">{r.company}</button> : r.company}</h3>
                   <span className="muted">{r.when}</span>
                 </div>
-                <p className="muted">{r.title}</p>
-                {r.body && <p>{r.body}</p>}
+                <p className="role__title">{r.title}</p>
+                {r.body && <p className="role__body">{r.body}</p>}
+                {r.tags?.length > 0 && (
+                  <ul className="tags">
+                    {r.tags.map((t) => <li key={t}>{t}</li>)}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {education?.length > 0 && (
+        <section id="education">
+          <h2>Education</h2>
+          <ul className="roles">
+            {education.map((e) => (
+              <li key={e.school} data-at={e.at}>
+                <div className="row">
+                  <h3>{e.at ? <button type="button">{e.school}</button> : e.school}</h3>
+                  {e.when && <span className="muted">{e.when}</span>}
+                </div>
+                <p className="muted">{e.degree}</p>
               </li>
             ))}
           </ul>
@@ -100,6 +122,38 @@ export default function Portfolio({ data }) {
                 </div>
               </details>
             ))}
+          </div>
+        </section>
+      )}
+
+      {skills?.length > 0 && (
+        <section id="skills">
+          <h2>Skills</h2>
+          <ul className="skills__main">
+            {skills.flatMap((g) => g.items.filter((s) => s.main)).map((s) => (
+              <li key={s.name} className="skill skill--main">
+                <span className="skill__logo"><img src={`/skills/${s.icon}.svg`} alt="" width={36} height={36} loading="lazy" /></span>
+                <b>{s.name}</b>
+              </li>
+            ))}
+          </ul>
+          <div className="skills__groups">
+            {skills.map((g) => {
+              const rest = g.items.filter((s) => !s.main);
+              return rest.length > 0 && (
+                <div key={g.title}>
+                  <h3 className="muted">{g.title}</h3>
+                  <ul className="skills__list">
+                    {rest.map((s) => (
+                      <li key={s.name} className="skill">
+                        <span className="skill__logo"><img src={`/skills/${s.icon}.svg`} alt="" width={20} height={20} loading="lazy" /></span>
+                        {s.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </section>
       )}
@@ -162,6 +216,18 @@ export default function Portfolio({ data }) {
           <TravelMap map={map} />
         </section>
       )}
+
+      <section id="contact" className="contact">
+        <h2>Get in touch</h2>
+        {contact && <p className="contact__lead">{contact}</p>}
+        <div className="contact__actions">
+          <CopyEmail email={person.email} />
+          {person.socials.map(([text, href]) => (
+            <a key={text} className="contact__link" href={href} {...external}><Icon name={text} />{text}</a>
+          ))}
+        </div>
+        <footer className="foot muted">© {new Date().getFullYear()} {person.name}</footer>
+      </section>
       </div>
     </main>
   );
