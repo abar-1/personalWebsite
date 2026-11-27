@@ -132,7 +132,7 @@ export default function Portfolio({ data }) {
           <ul className="skills__main">
             {skills.flatMap((g) => g.items.filter((s) => s.main)).map((s) => (
               <li key={s.name} className="skill skill--main">
-                <span className="skill__logo"><img src={`/skills/${s.icon}.svg`} alt="" width={36} height={36} loading="lazy" /></span>
+                <span className="skill__logo"><Image src={`/skills/${s.icon}.svg`} alt="" width={36} height={36} unoptimized /></span>
                 <b>{s.name}</b>
               </li>
             ))}
@@ -146,7 +146,7 @@ export default function Portfolio({ data }) {
                   <ul className="skills__list">
                     {rest.map((s) => (
                       <li key={s.name} className="skill">
-                        <span className="skill__logo"><img src={`/skills/${s.icon}.svg`} alt="" width={20} height={20} loading="lazy" /></span>
+                        <span className="skill__logo"><Image src={`/skills/${s.icon}.svg`} alt="" width={20} height={20} unoptimized /></span>
                         {s.name}
                       </li>
                     ))}

@@ -123,6 +123,7 @@ section[id] { scroll-margin-top: 32px; }
 @starting-style { .flight { opacity: 0; transform: translateY(10px); } }
 .flight header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
 .flight h3 { font: 700 1.5rem/1.1 var(--display), serif; }
+.flight h3:focus { outline: none; }
 .flight__close { flex: none; min-height: 44px; padding: 0 16px; border: 1px solid var(--line); border-radius: 22px; background: none; font-size: 0.9375rem; cursor: pointer; transition: transform 140ms var(--ease-out), border-color 160ms ease; }
 .flight > * { min-width: 0; }
 .flight { grid-template-columns: minmax(0, 1fr); }

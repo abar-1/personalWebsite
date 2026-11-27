@@ -28,11 +28,24 @@ function toSegment([px, py], [ax, ay], [bx, by]) {
 
 function Card({ title, line, item, routes = [], onRoute, onClose }) {
   const loose = item.photos ?? [];
+  const heading = useRef(null);
+
+  // The card sits in the chart, far from whatever opened it, so focus moves in
+  // when it opens and goes back to the opener once it closes.
+  useEffect(() => {
+    const opener = document.activeElement;
+    heading.current?.focus({ preventScroll: true });
+    return () => {
+      const lost = !document.activeElement || document.activeElement === document.body;
+      if (lost && opener?.isConnected) opener.focus({ preventScroll: true });
+    };
+  }, []);
+
   return (
     <section className="flight" aria-label={title}>
       <header>
         <div>
-          <h3>{title}</h3>
+          <h3 ref={heading} tabIndex={-1}>{title}</h3>
           <p className="muted">{line}</p>
         </div>
         <button type="button" className="flight__close" onClick={onClose}>Close</button>
