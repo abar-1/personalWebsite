@@ -75,14 +75,13 @@ section[id] { scroll-margin-top: 32px; }
 .chart[data-ready="true"] svg { transition: opacity 300ms ease; }
 @media (scripting: none) { .chart[data-ready="false"] svg { opacity: 1; } }
 .chart svg text { font-family: var(--body), serif; }
-.chart[data-animate="true"] .camera, .chart[data-animate="true"] .keep { transition: transform var(--fly) var(--ease-in-out); }
 .chart path, .chart circle { vector-effect: non-scaling-stroke; }
 .chart__land { fill: var(--land); }
-.chart__world { fill: var(--land); opacity: 0; transition: opacity 300ms ease; }
-.chart[data-mode="travel"] .chart__world { opacity: 1; }
-.chart__counties { fill: none; stroke: var(--land-line); stroke-width: 0.8; transition: opacity 300ms ease; }
-.chart__states, .chart__grid { transition: opacity 300ms ease; }
-.chart[data-mode="travel"]:not([data-near="true"]) :is(.chart__counties, .chart__states, .chart__grid, .chart__rose) { opacity: 0; }
+/* The stroke closes hairline gaps where the coarse world meets the detailed US. */
+.chart__world { fill: var(--land); stroke: var(--land); stroke-width: 1.5; }
+.chart__counties { fill: none; stroke: var(--land-line); stroke-width: 0.8; transition: opacity 200ms ease; }
+.chart__states, .chart__grid { transition: opacity 200ms ease; }
+.chart:not([data-near="true"]) :is(.chart__counties, .chart__states, .chart__grid, .chart__rose) { opacity: 0; }
 .chart__states { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 10 3 2 3; }
 .chart__grid { stroke: var(--accent); stroke-width: 0.7; opacity: 0.4; }
 .chart__rose { fill: none; stroke: var(--accent); stroke-width: 1.2; transition: opacity 300ms ease; }
@@ -116,6 +115,7 @@ section[id] { scroll-margin-top: 32px; }
 .stop__note { font-size: 13px; fill: var(--ink); }
 .plane { pointer-events: none; transition: transform var(--fly) var(--ease-in-out); }
 .plane__turn { transition: transform 260ms var(--ease-out); }
+.plane__size { transition: transform 300ms var(--ease-out); }
 .plane__body { fill: #fbfbf7; stroke: #1a2633; stroke-width: 1.6; stroke-linejoin: round; }
 .plane__red { fill: #c22b36; }
 .plane__blue { fill: #1c4380; }
@@ -373,7 +373,7 @@ details[open]::details-content { height: auto; opacity: 1; transition-duration: 
 }
 @media (prefers-reduced-motion: reduce) {
   .content > * { animation-name: fade; animation-duration: 200ms; }
-  .plane, .plane__turn, .chart[data-animate] .camera, .chart[data-animate] .keep { transition: none; }
+  .plane, .plane__turn, .plane__size { transition: none; }
   .thumbs button:hover img, .album:hover img, .album:active, .round:active { transform: none; }
   .chips button, summary svg, .pin::before { transition-property: color, background-color, border-color; }
   .chips button:active { transform: none; }

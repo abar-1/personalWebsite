@@ -1,8 +1,8 @@
 import "server-only";
 import { geoMercator, geoPath } from "d3-geo";
-import { feature, mesh } from "topojson-client";
+import { feature, merge, mesh } from "topojson-client";
 import us from "us-atlas/counties-10m.json";
-import world from "world-atlas/land-110m.json";
+import world from "world-atlas/countries-110m.json";
 import { photosIn } from "./photos";
 
 const W = 640;
@@ -49,9 +49,17 @@ export function buildChart({ stops, airports, routes, local, trips = [] }) {
   const byId = Object.fromEntries(spots.map((a) => [a.id, a]));
 
   return {
-    world: trips.length ? geoPath(wide).digits(0)(feature(world, world.objects.land)) : null,
+    // Every country but the US, which is drawn in more detail below. The coarse
+    // world map has no lakes, so letting it cover the US would fill in Lake Michigan.
+    world: trips.length ? geoPath(wide).digits(0)(merge(world, world.objects.countries.geometries.filter((g) => g.id !== "840"))) : null,
     trips: trips.map(place),
-    land: path(feature(us, us.objects.nation)),
+    // The world's edges in chart units: the travel view wraps east to west and
+    // stops at the top and bottom.
+    globe: trips.length
+      ? { x0: fix(wide([-180, 0])[0]), w: fix(wide([180, 0])[0] - wide([-180, 0])[0]), top: fix(wide([0, 85])[1]), bottom: fix(wide([0, -60])[1]) }
+      : null,
+    // The whole country, not just the local window, so zooming out never shows a cut edge.
+    land: geoPath(wide).digits(1)(feature(us, us.objects.nation)),
     counties: path(mesh(us, us.objects.counties, (a, b) => a !== b)),
     states: path(mesh(us, us.objects.states, (a, b) => a !== b)),
     stops: stops.map(place),
