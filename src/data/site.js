@@ -17,13 +17,7 @@ export const person = {
 // or route id from flights.js.
 export const about = [
   [
-    "Right now I'm a marketing data science & analytics intern at ",
-    ["Purdue's Daniels School of Business", "wl"],
-    " and a software engineer at ",
-    ["Purdue Instructional Innovations", "wl"],
-    ". This summer I was at ",
-    ["Flexco", "dg"],
-    ", building a predictive-maintenance app for manufacturing machines that replaced a vendor's version and saved $150K upfront.",
+    "Right now I'm a marketing data science & analytics intern at Purdue's Daniels School of Business and a software engineer at Purdue Instructional Innovations. This summer I was at Flexco, building a predictive-maintenance app for manufacturing machines that replaced a vendor's version and saved $150K upfront.",
   ],
   [
     "In tech I like search and retrieval, LLM tools that check their own work, and full-stack apps. Outside of academics/tech I fly, travel and listen to a lot of music. I got my private pilot license in May after training in a ",
@@ -35,16 +29,16 @@ export const about = [
 ];
 
 export const roles = [
-  { company: "Purdue Daniels School of Business", at: "wl", title: "Marketing Data Science Intern", when: "Aug 2026 to now", body: "Data pipelines for competitive research, and admissions analysis for senior leadership.", tags: ["Data pipelines", "Analytics"] },
-  { company: "Purdue Instructional Innovations", at: "wl", title: "Software Engineer Intern", when: "Jan 2026 to now", body: "Full-stack features for a learning platform used by 3,000+ students.", tags: ["Full stack", "EdTech"] },
-  { company: "Flexco", at: "dg", title: "IT Intern", when: "May to Aug 2026", body: "A predictive-maintenance app fed by live machine data, and LLM document extraction.", tags: ["Manufacturing data", "LLMs", "Full stack"] },
-  { company: "KLoBot", at: "elm", title: "Software Development Intern", when: "May to Aug 2025", body: "AI-powered search over law firms' SharePoint knowledge.", tags: ["Search", "RAG"] },
+  { company: "Purdue Daniels School of Business", title: "Marketing Data Science Intern", when: "Aug 2026 to now", body: "Data pipelines for competitive research, and admissions analysis for senior leadership.", tags: ["Data pipelines", "Analytics"] },
+  { company: "Purdue Instructional Innovations", title: "Software Engineer Intern", when: "Jan 2026 to now", body: "Full-stack features for a learning platform used by 3,000+ students.", tags: ["Full stack", "EdTech"] },
+  { company: "Flexco", title: "IT Intern", when: "May to Aug 2026", body: "A predictive-maintenance app fed by live machine data, and LLM document extraction.", tags: ["Manufacturing data", "LLMs", "Full stack"] },
+  { company: "KLoBot", title: "Software Development Intern", when: "May to Aug 2025", body: "AI-powered search over law firms' SharePoint knowledge.", tags: ["Search", "RAG"] },
 ];
 
 // "when" is optional; add a graduation year if you want one shown.
 export const education = [
-  { school: "Purdue University", at: "wl", degree: "B.S. Computer Science and Data Science, minor in Finance", when: "Graduating May 2028" },
-  { school: "Illinois Mathematics and Science Academy", at: "aur", degree: "High school", when: "" },
+  { school: "Purdue University", degree: "B.S. Computer Science and Data Science, minor in Finance", when: "Graduating May 2028" },
+  { school: "Illinois Mathematics and Science Academy", degree: "High school", when: "" },
 ];
 
 export const contact = "Email is the best way to reach me. Happy to talk about anything.";
@@ -52,7 +46,6 @@ export const contact = "Email is the best way to reach me. Happy to talk about a
 export const projects = [
   {
     title: "ResearchFindr",
-    at: "wl",
     photos: "projects/researchfindr", // folder inside public/
     line: "Matches students with researchers",
     body: "Finds researchers who share your interests. Hybrid search with reranking and filtering ahead of the LLM raised match accuracy by about 20%.",
@@ -61,7 +54,6 @@ export const projects = [
   },
   {
     title: "Activities Manager",
-    at: "elm",
     photos: "projects/activities-manager", // folder inside public/
     line: "Event planning with live chat",
     body: "A full-stack app with real-time SignalR chat, photo uploads and authentication on a CQRS backend.",
@@ -70,7 +62,6 @@ export const projects = [
   },
   {
     title: "MoodMusic",
-    at: "aur",
     photos: "projects/moodmusic", // folder inside public/
     line: "Playlists from your expression",
     body: "Reads your expression from a webcam with a CNN, then adds 20 tracks that fit the mood to a Spotify playlist.",
