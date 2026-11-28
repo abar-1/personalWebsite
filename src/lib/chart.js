@@ -2,6 +2,7 @@ import "server-only";
 import { geoMercator, geoPath } from "d3-geo";
 import { feature, mesh } from "topojson-client";
 import us from "us-atlas/counties-10m.json";
+import world from "world-atlas/land-110m.json";
 import { photosIn } from "./photos";
 
 const W = 640;
@@ -28,7 +29,7 @@ export function albums(chart) {
 }
 
 // Draws the base map once in chart units. The browser pans and zooms it.
-export function buildChart({ stops, airports, routes, local }) {
+export function buildChart({ stops, airports, routes, local, trips = [] }) {
   const all = [...stops, ...airports];
   const projection = geoMercator()
     .fitExtent([[60, 60], [W - 60, H - 60]], { type: "MultiPoint", coordinates: all.map((p) => [p.lon, p.lat]) })
@@ -39,9 +40,17 @@ export function buildChart({ stops, airports, routes, local }) {
     return { ...p, x: fix(x), y: fix(y) };
   };
   const spots = airports.map(place);
+  // The world uses the same projection, so the travel view is the local chart
+  // zoomed out rather than a different map.
+  const wide = geoMercator().scale(projection.scale()).translate(projection.translate());
+  // Clip past the northernmost land (Greenland, 83.6°N) and above Antarctica,
+  // so no coastline ends in a straight edge.
+  wide.clipExtent([[wide([-180, 0])[0], wide([0, 85])[1]], [wide([180, 0])[0], wide([0, -60])[1]]]);
   const byId = Object.fromEntries(spots.map((a) => [a.id, a]));
 
   return {
+    world: trips.length ? geoPath(wide).digits(0)(feature(world, world.objects.land)) : null,
+    trips: trips.map(place),
     land: path(feature(us, us.objects.nation)),
     counties: path(mesh(us, us.objects.counties, (a, b) => a !== b)),
     states: path(mesh(us, us.objects.states, (a, b) => a !== b)),

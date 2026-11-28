@@ -13,10 +13,11 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
 
 export default function Portfolio({ data }) {
   const { person, log, stops, homeBase, about, roles, projects, skills, education, contact, flying, places, artists, live } = data;
-  const chart = buildChart({ stops, airports: log.airports, routes: log.routes, local: log.local });
+  const trips = places.map((p, i) => ({ ...p, id: `trip-${i}` }));
+  const chart = buildChart({ stops, airports: log.airports, routes: log.routes, local: log.local, trips });
   const shown = albums(chart);
   const others = chart.routes.filter((r) => !shown.some((a) => a.id === r.id));
-  const map = places.length ? buildMap(places) : null;
+  const map = trips.length ? buildMap(trips) : null;
 
   return (
     <main className="page">

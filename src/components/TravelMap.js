@@ -17,6 +17,7 @@ export default function TravelMap({ map }) {
             key={`${p.name}-${i}`}
             type="button"
             className="pin"
+            data-at={p.id}
             style={{ left: `${p.x}%`, top: `${p.y}%` }}
             aria-label={`${p.name}, ${p.country}`}
             aria-pressed={i === active}
@@ -39,7 +40,7 @@ export default function TravelMap({ map }) {
       <ul className="chips">
         {map.places.map((p, i) => (
           <li key={`${p.name}-${i}`}>
-            <button type="button" aria-pressed={i === active} onClick={() => setActive(i)}>{p.name}</button>
+            <button type="button" data-at={p.id} aria-pressed={i === active} onClick={() => setActive(i)}>{p.name}</button>
           </li>
         ))}
       </ul>

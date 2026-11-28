@@ -26,7 +26,7 @@ function toSegment([px, py], [ax, ay], [bx, by]) {
   return Math.hypot(px - ax - t * dx, py - ay - t * dy);
 }
 
-function Card({ title, line, item, routes = [], onRoute, onClose }) {
+function Card({ title, line, note, item, routes = [], onRoute, onClose }) {
   const loose = item.photos ?? [];
   const heading = useRef(null);
 
@@ -50,6 +50,7 @@ function Card({ title, line, item, routes = [], onRoute, onClose }) {
         </div>
         <button type="button" className="flight__close" onClick={onClose}>Close</button>
       </header>
+      {note && <p>{note}</p>}
       {item.flights.map((f) => (
         <div key={f.date} className="flight__entry">
           <p><span>{f.day}</span>{f.note && <span className="muted">{f.note}</span>}</p>
@@ -72,14 +73,19 @@ function Card({ title, line, item, routes = [], onRoute, onClose }) {
 }
 
 export default function Chart({ chart, home }) {
-  const { stops, airports, routes, perDegree } = chart;
+  const { stops, airports, routes, trips, perDegree } = chart;
   const root = useRef(null);
   const timers = useRef([]);
   const homeStop = stops.find((s) => s.id === home);
   const [box, setBox] = useState({ w: 576, h: 900, ready: false });
   // Only a visitor's own action animates the camera. Loading and resizing do not.
   const [animate, setAnimate] = useState(false);
-  const [mode, setMode] = useState("places");
+  const [mode, setMode] = useState("travel");
+  // A camera the visitor set by zooming or dragging. Null follows the picked item.
+  const [view, setView] = useState(null);
+  const [dragging, setDragging] = useState(false);
+  const [tip, setTip] = useState(null); // trip id under the pointer or keyboard focus
+  const drag = useRef(null);
   const [pick, setPick] = useState(null); // { kind: "stop" | "airport" | "route", id }
   const [hover, setHover] = useState(null);
   const [plane, setPlane] = useState({ x: homeStop.x, y: homeStop.y, turn: -60 });
@@ -89,6 +95,7 @@ export default function Chart({ chart, home }) {
       const { width: w, height: h } = entry.contentRect;
       if (!w || !h) return;
       setAnimate(false);
+      setView(null);
       setBox({ w, h, ready: true });
     });
     observer.observe(root.current);
@@ -112,11 +119,17 @@ export default function Chart({ chart, home }) {
 
   const go = (id) => {
     setAnimate(true);
+    setView(null);
     const stop = stops.find((s) => s.id === id);
     const airport = airports.find((a) => a.id === id);
     const route = routes.find((r) => r.id === id);
-    if (stop) {
-      setMode("places");
+    const trip = trips.find((t) => t.id === id);
+    if (trip) {
+      setMode("travel");
+      setPick({ kind: "trip", id });
+      fly([[trip.x, trip.y]]);
+    } else if (stop) {
+      setMode("travel");
       setPick({ kind: "stop", id });
       fly([[stop.x, stop.y]]);
     } else if (airport && !airport.flights.length && routes.filter((r) => r.path.includes(id)).length === 1) {
@@ -135,6 +148,7 @@ export default function Chart({ chart, home }) {
 
   const overview = (next) => {
     setAnimate(true);
+    setView(null);
     setMode(next);
     setPick(null);
   };
@@ -150,6 +164,7 @@ export default function Chart({ chart, home }) {
     const onKey = (e) => {
       if (e.key !== "Escape" || document.querySelector("dialog[open]")) return;
       setAnimate(true);
+      setView(null);
       setPick(null);
     };
     document.addEventListener("keydown", onKey);
@@ -174,7 +189,7 @@ export default function Chart({ chart, home }) {
   }, []);
 
   const route = pick?.kind === "route" ? routes.find((r) => r.id === pick.id) : null;
-  const spot = route || !pick ? null : (pick.kind === "stop" ? stops : airports).find((p) => p.id === pick.id);
+  const spot = route || !pick ? null : ({ stop: stops, trip: trips, airport: airports })[pick.kind].find((p) => p.id === pick.id);
 
   // Camera: screen pixels per chart unit, and where the chart's corner sits.
   const small = box.w < 500 || box.h < 400;
@@ -190,13 +205,28 @@ export default function Chart({ chart, home }) {
   };
   const xy = (p) => [p.x, p.y];
   const tight = { top: 46, right: 46, bottom: 68, left: 46 };
-  let camera;
-  if (spot) camera = { s: closeUp, x: box.w / 2 - spot.x * closeUp, y: box.h / 2 - spot.y * closeUp };
+  let fit;
+  // A trip shows its region (about 40 degrees across), not a street-level close-up.
+  const region = Math.min(box.w, box.h) / (40 * perDegree);
+  if (spot?.id.startsWith("trip-")) fit = { s: region, x: box.w / 2 - spot.x * region, y: box.h / 2 - spot.y * region };
+  else if (spot) fit = { s: closeUp, x: box.w / 2 - spot.x * closeUp, y: box.h / 2 - spot.y * closeUp };
   else if (route)
-    camera = frame(route.points, small ? tight : { top: 110, right: 80, bottom: Math.min(370, box.h * 0.42 + 40), left: 80 }, closeUp);
+    fit = frame(route.points, small ? tight : { top: 110, right: 80, bottom: Math.min(370, box.h * 0.42 + 40), left: 80 }, closeUp);
   else if (mode === "flights")
-    camera = frame(airports.map(xy), small ? tight : { top: 100, right: 60, bottom: 80, left: 60 }, closeUp);
-  else camera = frame(stops.map(xy), small ? tight : { top: 150, right: 170, bottom: 170, left: 110 }, closeUp);
+    fit = frame(airports.map(xy), small ? tight : { top: 100, right: 60, bottom: 80, left: 60 }, closeUp);
+  else fit = frame(trips.length ? trips.map(xy) : stops.map(xy), small ? tight : { top: 100, right: 80, bottom: 80, left: 40 }, closeUp);
+  const camera = view ?? fit;
+  // Close enough in to see county lines and the home places.
+  const near = camera.s >= closeUp * 0.2;
+
+  const minZoom = Math.min(box.w, box.h) / (300 * perDegree);
+  const maxZoom = closeUp * 2;
+  const zoom = (k) => {
+    const s = Math.min(maxZoom, Math.max(minZoom, camera.s * k));
+    const [cx, cy] = [box.w / 2, box.h / 2];
+    setAnimate(true);
+    setView({ s, x: cx - ((cx - camera.x) * s) / camera.s, y: cy - ((cy - camera.y) * s) / camera.s });
+  };
 
   // Markers keep one size on screen however far the chart is zoomed.
   const size = (small ? 0.72 : 1) / camera.s;
@@ -231,7 +261,20 @@ export default function Chart({ chart, home }) {
     if (line.d <= 14) return line.id;
     return port.d <= 18 ? port.id : null;
   };
+  const onChartDown = (e) => {
+    // Only the travel map pans and zooms. The flight log stays framed on the routes.
+    if (e.button !== 0 || mode !== "travel") return;
+    drag.current = { x: e.clientX, y: e.clientY, cam: camera, moved: false };
+  };
+  const onChartUp = () => {
+    if (drag.current && !drag.current.moved) drag.current = null;
+    setDragging(false);
+  };
   const onChartClick = (e) => {
+    if (drag.current?.moved) {
+      drag.current = null;
+      return;
+    }
     if (mode === "flights") {
       const id = nearest(e);
       if (id) return go(id);
@@ -239,14 +282,29 @@ export default function Chart({ chart, home }) {
     if (pick) overview(mode);
   };
   const onChartMove = (e) => {
+    const d = drag.current;
+    if (d && e.buttons === 1) {
+      const [dx, dy] = [e.clientX - d.x, e.clientY - d.y];
+      if (!d.moved && Math.hypot(dx, dy) < 5) return;
+      if (!d.moved) {
+        d.moved = true;
+        e.currentTarget.setPointerCapture(e.pointerId);
+        setDragging(true);
+        setHover(null);
+      }
+      setAnimate(false);
+      setView({ ...d.cam, x: d.cam.x + dx, y: d.cam.y + dy });
+      return;
+    }
     if (e.pointerType === "mouse") setHover(mode === "flights" ? nearest(e) : null);
   };
   const on = (kind, id) => pick?.kind === kind && pick.id === id;
 
   return (
-    <aside ref={root} id="chart" className="chart" data-mode={mode} data-ready={box.ready} data-animate={animate} aria-label="Chart of places and flights">
-      <svg onClick={onChartClick} onPointerMove={onChartMove} onPointerLeave={() => setHover(null)} style={{ cursor: hover ? "pointer" : undefined }}>
+    <aside ref={root} id="chart" className="chart" data-mode={mode} data-near={near} data-ready={box.ready} data-animate={animate} aria-label="Chart of places and flights">
+      <svg onClick={onChartClick} onPointerDown={onChartDown} onPointerMove={onChartMove} onPointerUp={onChartUp} onPointerCancel={onChartUp} onPointerLeave={() => setHover(null)} style={{ cursor: dragging ? "grabbing" : hover ? "pointer" : undefined }}>
         <g className="camera" style={{ transform: `translate(${camera.x}px, ${camera.y}px) scale(${camera.s})` }}>
+          {chart.world && <path className="chart__world" d={chart.world} />}
           <path className="chart__land" d={chart.land} />
           <path className="chart__counties" d={chart.counties} />
           <path className="chart__states" d={chart.states} />
@@ -303,12 +361,12 @@ export default function Chart({ chart, home }) {
             })}
           </g>
 
-          <g className="layer" data-show={mode === "places"}>
+          <g className="layer" data-show={mode === "travel" && near}>
             {stops.map((s) => {
               const l = STOP_LABEL[s.label];
               return (
                 <g key={s.id} transform={`translate(${s.x} ${s.y})`}>
-                  <g className="stop keep" style={keep} data-side={s.label} aria-label={[s.name, s.note].filter(Boolean).join(": ")} aria-pressed={on("stop", s.id)} {...press(s.id)} tabIndex={mode === "places" ? 0 : -1}>
+                  <g className="stop keep" style={keep} data-side={s.label} aria-label={[s.name, s.note].filter(Boolean).join(": ")} aria-pressed={on("stop", s.id)} {...press(s.id)} tabIndex={mode === "travel" && near ? 0 : -1}>
                     <circle className="stop__hit" r="22" fill="transparent" />
                     <circle className="stop__dot" r="7" />
                     <text className="stop__name" x={l.x} y={l.y} textAnchor={l.anchor}>{s.name}</text>
@@ -319,8 +377,20 @@ export default function Chart({ chart, home }) {
             })}
           </g>
 
+          <g className="layer" data-show={mode === "travel"}>
+            {trips.map((t) => (
+              <g key={t.id} transform={`translate(${t.x} ${t.y})`}>
+                <g className="trip keep" style={keep} onPointerEnter={() => setTip(t.id)} onPointerLeave={() => setTip(null)} onFocus={() => setTip(t.id)} onBlur={() => setTip(null)} aria-label={`${t.name}, ${[t.country, t.year].filter(Boolean).join(", ")}`} aria-pressed={on("trip", t.id)} {...press(t.id)} tabIndex={mode === "travel" ? 0 : -1}>
+                  <title>{t.name}</title>
+                  <circle r="12" fill="transparent" />
+                  <circle className="trip__dot" r="5" />
+                </g>
+              </g>
+            ))}
+          </g>
+
           <g className="plane" aria-hidden="true" style={{ transform: `translate(${plane.x}px, ${plane.y}px)` }}>
-            <g className="keep" style={{ transform: `scale(${size * (mode === "flights" && !pick ? 0.75 : 1)})` }}>
+            <g className="keep" style={{ transform: `scale(${size * (pick ? 1 : 0.75)})` }}>
               <g className="plane__turn" style={{ transform: `rotate(${plane.turn}deg)` }}>
                 <path className="plane__body" d="M-20 -13L-20 13Q-20 14 -21 14L-26 13L-27 -13L-21 -14Q-20 -14 -20 -13Z" />
                 <path className="plane__body" d="M25 0C25 -4 21 -6 15 -6L-2 -5L-25 -2V2L-2 5L15 6C21 6 25 4 25 0Z" />
@@ -334,15 +404,32 @@ export default function Chart({ chart, home }) {
         </g>
       </svg>
 
+      {(() => {
+        const t = !dragging && mode === "travel" && trips.find((p) => p.id === tip);
+        return t ? (
+          <div className="chart__tip" aria-hidden="true" style={{ left: camera.x + t.x * camera.s, top: camera.y + t.y * camera.s }}>
+            <b>{t.name}</b>
+            <span>{[t.country !== t.name && t.country, t.year].filter(Boolean).join(", ")}</span>
+          </div>
+        ) : null;
+      })()}
+
       <div className="chart__modes" role="group" aria-label="What the chart shows">
-        <button type="button" aria-pressed={mode === "places"} onClick={() => overview("places")}>Places</button>
+        <button type="button" aria-pressed={mode === "travel"} onClick={() => overview("travel")}>Travel</button>
         <button type="button" aria-pressed={mode === "flights"} onClick={() => overview("flights")}>Flight log</button>
       </div>
-      <button type="button" className="chart__reset" data-show={Boolean(pick)} inert={!pick} onClick={reset}>Reset view</button>
+      <button type="button" className="chart__reset" data-show={Boolean(pick || view)} inert={!pick && !view} onClick={reset}>Reset view</button>
+      {mode === "travel" && <div className="chart__zoom" role="group" aria-label="Zoom">
+        <button type="button" aria-label="Zoom in" disabled={camera.s >= maxZoom} onClick={() => zoom(1.6)}>+</button>
+        <button type="button" aria-label="Zoom out" disabled={camera.s <= minZoom} onClick={() => zoom(1 / 1.6)}>&minus;</button>
+      </div>}
       <p className="chart__note">Not for navigation</p>
 
       {route && (
         <Card key={route.id} title={route.title} line={route.path.join(" – ")} item={route} onClose={() => overview("flights")} />
+      )}
+      {pick?.kind === "trip" && spot && (
+        <Card key={spot.id} title={spot.name} line={[spot.country, spot.year].filter(Boolean).join(", ")} note={spot.note} item={{ flights: [] }} onClose={() => overview("travel")} />
       )}
       {pick?.kind === "airport" && spot && (
         <Card key={spot.id} title={spot.name} line={spot.id} item={spot} routes={routes.filter((r) => r.path.includes(spot.id))} onRoute={go} onClose={() => overview("flights")} />

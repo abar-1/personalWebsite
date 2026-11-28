@@ -37,8 +37,8 @@ export const about = [
 export const roles = [
   { company: "Purdue Daniels School of Business", at: "wl", title: "Marketing Data Science Intern", when: "Aug 2026 to now", body: "Data pipelines for competitive research, and admissions analysis for senior leadership.", tags: ["Data pipelines", "Analytics"] },
   { company: "Purdue Instructional Innovations", at: "wl", title: "Software Engineer Intern", when: "Jan 2026 to now", body: "Full-stack features for a learning platform used by 3,000+ students.", tags: ["Full stack", "EdTech"] },
-  { company: "Flexco", at: "dg", title: "IT Intern", when: "May to Aug 2026", body: "A predictive-maintenance app fed by live machine data, and LLM document extraction.", tags: ["Manufacturing data", "LLMs"] },
-  { company: "KLoBot", at: "elm", title: "Software Development Intern", when: "May to Aug 2025", body: "AI-powered search over law firms' SharePoint knowledge.", tags: ["Search", "AI"] },
+  { company: "Flexco", at: "dg", title: "IT Intern", when: "May to Aug 2026", body: "A predictive-maintenance app fed by live machine data, and LLM document extraction.", tags: ["Manufacturing data", "LLMs", "Full stack"] },
+  { company: "KLoBot", at: "elm", title: "Software Development Intern", when: "May to Aug 2025", body: "AI-powered search over law firms' SharePoint knowledge.", tags: ["Search", "RAG"] },
 ];
 
 // "when" is optional; add a graduation year if you want one shown.
@@ -47,7 +47,7 @@ export const education = [
   { school: "Illinois Mathematics and Science Academy", at: "aur", degree: "High school", when: "" },
 ];
 
-export const contact = "Email is the best way to reach me. Happy to talk about internships, projects, or flying.";
+export const contact = "Email is the best way to reach me. Happy to talk about anything.";
 
 export const projects = [
   {
