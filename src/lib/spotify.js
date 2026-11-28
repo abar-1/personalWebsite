@@ -47,12 +47,8 @@ const toTrack = (t) => ({
 // Refreshed hourly. It throws on failure so a bad answer is never cached.
 const fetchTop = unstable_cache(
   async () => {
-    const [tracks, artists] = await Promise.all([
-      get("/me/top/tracks?time_range=short_term&limit=6", { cache: "no-store" }),
-      get("/me/top/artists?time_range=medium_term&limit=6", { cache: "no-store" }),
-    ]);
+    const artists = await get("/me/top/artists?time_range=medium_term&limit=6", { cache: "no-store" });
     return {
-      tracks: tracks.items.map(toTrack),
       artists: artists.items.map((a) => ({
         name: a.name,
         href: a.external_urls?.spotify ?? null,
@@ -60,7 +56,7 @@ const fetchTop = unstable_cache(
       })),
     };
   },
-  ["spotify-top"],
+  ["spotify-top-artists"],
   { revalidate: 3600 }
 );
 

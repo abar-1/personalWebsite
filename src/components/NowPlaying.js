@@ -59,7 +59,6 @@ export default function NowPlaying({ demoTrack }) {
         <span className="np__record"><span className="np__label" /></span>
         <span className="np__text">
           <span className="np__title">Nothing playing right now</span>
-          <span className="np__artist">I&rsquo;m probably in class or in the air. Here&rsquo;s what I&rsquo;ve had on lately.</span>
         </span>
       </div>
     );

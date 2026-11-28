@@ -18,5 +18,5 @@ export default function LiveTop() {
   }, []);
 
   if (!top) return null;
-  return <TopLists tracks={top.tracks ?? []} artists={top.artists ?? []} />;
+  return <TopLists artists={top.artists ?? []} />;
 }

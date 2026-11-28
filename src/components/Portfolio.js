@@ -12,7 +12,7 @@ import avatar from "@/app/assets/avatar.jpg";
 const external = { target: "_blank", rel: "noopener noreferrer" };
 
 export default function Portfolio({ data }) {
-  const { person, log, stops, homeBase, about, roles, projects, skills, education, contact, flying, places, tracks, artists, live } = data;
+  const { person, log, stops, homeBase, about, roles, projects, skills, education, contact, flying, places, artists, live } = data;
   const chart = buildChart({ stops, airports: log.airports, routes: log.routes, local: log.local });
   const shown = albums(chart);
   const others = chart.routes.filter((r) => !shown.some((a) => a.id === r.id));
@@ -160,11 +160,11 @@ export default function Portfolio({ data }) {
 
       <section id="music">
         <h2>Listening to</h2>
-        {tracks.length > 0 || live ? (
-          <Music tracks={tracks} artists={artists} live={live} demoTrack={data.demoTrack} />
+        {artists.length > 0 || live ? (
+          <Music artists={artists} live={live} demoTrack={data.demoTrack} />
         ) : (
           <div className="soon">
-            <p className="muted">My top artists and songs from Spotify will show up here.</p>
+            <p className="muted">My top artists from Spotify will show up here.</p>
             <ul className="tracks" aria-hidden="true">
               {[0, 1, 2, 3].map((i) => (
                 <li key={i} className="track"><i /><span><i /><i /></span></li>
