@@ -27,6 +27,7 @@ export default function Portfolio({ data }) {
         <div>
           <h1>{person.name}</h1>
           <p className="muted">{person.line}</p>
+          {person.seeking && <p className="seeking">{person.seeking}</p>}
         </div>
         <nav className="links" aria-label="Contact and profiles">
           {person.socials.map(([text, href]) => (
@@ -225,8 +226,15 @@ export default function Portfolio({ data }) {
           {person.socials.map(([text, href]) => (
             <a key={text} className="contact__link" href={href} {...external}><Icon name={text} />{text}</a>
           ))}
+          <a className="contact__link" href={`mailto:${person.email}?subject=${encodeURIComponent("Résumé request")}`}><Icon name="Résumé" />Résumé on request</a>
         </div>
-        <footer className="foot muted">© {new Date().getFullYear()} {person.name}</footer>
+        <footer className="foot muted">
+          <p>
+            I built this site with Next.js and drew the flight chart from scratch with D3 and real map data.
+            {person.source && <> <a className="link" href={person.source} {...external}>See the source on GitHub</a>.</>}
+          </p>
+          <p>© {new Date().getFullYear()} {person.name}</p>
+        </footer>
       </section>
       </div>
     </main>

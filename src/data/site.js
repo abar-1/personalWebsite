@@ -3,11 +3,13 @@
 export const person = {
   name: "Aneesh Bargaje",
   line: "Computer science and data science at Purdue, minor in finance. Private pilot.",
+  seeking: "Graduating May 2028. Looking for software engineering and data science roles.",
   email: "abargaje@purdue.edu",
   socials: [
     ["GitHub", "https://github.com/abar-1"],
     ["LinkedIn", "https://www.linkedin.com/in/aneesh-bargaje-a345b7269/"],
   ],
+  source: "https://github.com/abar-1/personalWebsite",
 };
 
 // Each paragraph is a list of plain strings and [words, stop] pairs.
@@ -41,7 +43,7 @@ export const roles = [
 
 // "when" is optional; add a graduation year if you want one shown.
 export const education = [
-  { school: "Purdue University", at: "wl", degree: "B.S. Computer Science and Data Science, minor in Finance", when: "" },
+  { school: "Purdue University", at: "wl", degree: "B.S. Computer Science and Data Science, minor in Finance", when: "Graduating May 2028" },
   { school: "Illinois Mathematics and Science Academy", at: "aur", degree: "High school", when: "" },
 ];
 

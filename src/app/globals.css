@@ -54,6 +54,7 @@ button { font: inherit; color: inherit; }
 
 .top { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 28px; }
 .top .muted { margin-top: 10px; }
+.seeking { margin-top: 6px; font-weight: 600; }
 .avatar { display: block; width: 144px; height: 144px; border-radius: 50%; object-fit: cover; }
 
 .more { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 10px; }
@@ -196,7 +197,9 @@ section[id] { scroll-margin-top: 32px; }
 .copy[data-copied="true"] .copy__label + .copy__label { opacity: 1; filter: none; transform: none; }
 .contact__link { border: 1px solid var(--line); background: var(--raise); }
 .contact__link svg { width: 18px; height: 18px; }
-.foot { margin-top: 48px; font-size: 0.875rem; }
+.foot { display: grid; gap: 6px; margin-top: 48px; font-size: 0.875rem; }
+.foot p { max-width: 60ch; }
+.foot .link { padding-block: 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
