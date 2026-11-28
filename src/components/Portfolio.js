@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Chart from "./Chart";
-import TravelMap from "./TravelMap";
 import Gallery from "./Gallery";
 import Icon from "./Icons";
 import Music from "./Music";
 import CopyEmail from "./CopyEmail";
-import { buildMap } from "@/lib/map";
 import { albums, buildChart } from "@/lib/chart";
 import avatar from "@/app/assets/avatar.jpg";
 
@@ -17,7 +15,6 @@ export default function Portfolio({ data }) {
   const chart = buildChart({ stops, airports: log.airports, routes: log.routes, local: log.local, trips });
   const shown = albums(chart);
   const others = chart.routes.filter((r) => !shown.some((a) => a.id === r.id));
-  const map = trips.length ? buildMap(trips) : null;
 
   return (
     <main className="page">
@@ -211,13 +208,6 @@ export default function Portfolio({ data }) {
         )}
         {flying.length > 0 && <Gallery photos={flying} title="Flying" />}
       </section>
-
-      {map && (
-        <section>
-          <h2>Places I&rsquo;ve been</h2>
-          <TravelMap map={map} />
-        </section>
-      )}
 
       <section id="contact" className="contact">
         <h2>Get in touch</h2>

@@ -1,7 +1,6 @@
-// Add a place and the travel section appears. Photos are optional and go in
-// public/travel/. Example:
+// Trips on the chart's Travel view. Example:
 // { name: "Tokyo", country: "Japan", lat: 35.68, lon: 139.69, year: "2024",
-//   note: "One line about it.", photo: "/travel/tokyo.jpg" },
+//   note: "One line about it." },
 // One pin per trip, oldest first. Multi-stop trips sit on one pin and list
 // the stops in the note.
 export const places = [
